@@ -20,7 +20,6 @@ import java.util.concurrent.*;
 public class ThreadPoolExecutorConfig {
     private static final int THREADS = Runtime.getRuntime().availableProcessors()/2 + 1;
     final ThreadFactory deamonThreadFactory = new ThreadFactoryBuilder()
-            // -%d不要少
             .setNameFormat("async-deamon-task-%d")
             .setDaemon(true)
             .build();
