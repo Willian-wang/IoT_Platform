@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductInfService {
 
-    @Autowired
-    private ProductInfDao productInfDao;
+//    @Autowired
+//    private ProductInfDao productInfDao;
 
 }

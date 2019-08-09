@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Version: 1.0
  **/
 
-@RequestMapping("/product/inf")
+@RequestMapping("/product/topic")
 @RestController
 public class ProductTopicController {
 

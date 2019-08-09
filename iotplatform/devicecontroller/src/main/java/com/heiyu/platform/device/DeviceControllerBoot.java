@@ -1,7 +1,9 @@
 package com.heiyu.platform.device;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  * @ClassName: RegisterBoot
@@ -12,6 +14,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  **/
 
 @SpringBootApplication
+@MapperScan("com.heiyu.platform.device.dao")
+@PropertySource("classpath:spring.properties")
 public class DeviceControllerBoot {
 
     public static void main(String[] arg) {

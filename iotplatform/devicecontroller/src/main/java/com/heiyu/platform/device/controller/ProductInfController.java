@@ -26,7 +26,6 @@ public class ProductInfController {
 
     @RequestMapping(method = RequestMethod.GET)
     public BasicResponseVO<ProductDetail> getProductInfDetail(@RequestBody ProductDetail productDetail){
-        productInfService.
         return null;
     }
 
