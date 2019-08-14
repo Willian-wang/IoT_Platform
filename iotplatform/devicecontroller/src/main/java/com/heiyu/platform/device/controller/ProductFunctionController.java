@@ -8,14 +8,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @ClassName: ProductionFuctionController
- * @Description: //TODO
- * @Author: WangYi
- * @Date: 14:59 2019/8/7
- * @Version: 1.0
+ * 功能控制类，对于设备功能的定义，查询，删除，修改。
+ * @author WangYi
+ * @date 14:59 2019/8/7
+ * @version 1.0
+ * //TODO 该类未完成
  **/
-
-
 @RequestMapping("/product/function")
 @RestController
 public class ProductFunctionController {

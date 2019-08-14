@@ -1,21 +1,29 @@
 package com.heiyu.platform.device.entity.common;
 
+import com.heiyu.platform.device.common.IdGenerator;
+
 import java.sql.Timestamp;
 
 /**
- * @ClassName: BasicEntity
- * @Description: //TODO
- * @Author: WangYi
- * @Date: 11:40 2019/8/6
- * @Version: 1.0
+ * 基础PO类，所有PO类都会有ID,创建时间，更新时间，删除标记四个数据
+ * @author WangYi
+ * @date 11:40 2019/8/6
+ * @version 1.0
  **/
 
 public class BasicEntityPO {
 
     private Long id;
-    private Timestamp gmtCreate;
-    private Timestamp gmtUpdate;
+    private Timestamp gmtCreateTime;
+    private Timestamp gmtUpdateTime;
     private Boolean remove;
+
+    public void setBasicInf(){
+        id = IdGenerator.getId();
+        gmtCreateTime =new Timestamp(System.currentTimeMillis());
+        gmtUpdateTime = new Timestamp(System.currentTimeMillis());
+        remove = false;
+    }
 
     public Long getId() {
         return id;
@@ -25,20 +33,20 @@ public class BasicEntityPO {
         this.id = id;
     }
 
-    public Timestamp getGmtCreate() {
-        return gmtCreate;
+    public Timestamp getGmtCreateTime() {
+        return gmtCreateTime;
     }
 
-    public void setGmtCreate(Timestamp gmtCreate) {
-        this.gmtCreate = gmtCreate;
+    public void setGmtCreateTime(Timestamp gmtCreateTime) {
+        this.gmtCreateTime = gmtCreateTime;
     }
 
-    public Timestamp getGmtUpdate() {
-        return gmtUpdate;
+    public Timestamp getGmtUpdateTime() {
+        return gmtUpdateTime;
     }
 
-    public void setGmtUpdate(Timestamp gmtUpdate) {
-        this.gmtUpdate = gmtUpdate;
+    public void setGmtUpdateTime(Timestamp gmtUpdateTime) {
+        this.gmtUpdateTime = gmtUpdateTime;
     }
 
     public Boolean getRemove() {

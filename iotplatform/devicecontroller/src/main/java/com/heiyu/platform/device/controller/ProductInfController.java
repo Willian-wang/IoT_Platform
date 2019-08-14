@@ -9,14 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * @ClassName: ProductController
- * @Description: //TODO
- * @Author: WangYi
- * @Date: 14:29 2019/8/7
- * @Version: 1.0
- **/
+import java.util.List;
 
+/**
+ * 产品信息控制类，添加，删除，修改。
+ * @author WangYi
+ * @date 14:29 2019/8/7
+ * @version 1.0
+ * //TODO 该类未完成
+ **/
 @RequestMapping("/product/inf")
 @RestController
 public class ProductInfController {
@@ -30,9 +31,9 @@ public class ProductInfController {
     }
 
     @RequestMapping(method = RequestMethod.GET , value = "/list")
-    public BasicResponseVO<ProductDetail> getProductInfList(@RequestBody ProductDetail[] productDetails){
+    public BasicResponseVO<List<ProductDetail>> getProductInfList(@RequestBody ProductDetail productDetails){
 
-        return null;
+        return new BasicResponseVO<List<ProductDetail>>(productInfService.getProductInfList(productDetails));
     }
 
     @RequestMapping(method = RequestMethod.DELETE,value = "/list")
@@ -43,8 +44,8 @@ public class ProductInfController {
 
     @RequestMapping(method = RequestMethod.POST)
     public BasicResponseVO insertProductInf(@RequestBody ProductDetail productDetail){
-
-        return null;
+        productInfService.insertProductInfService(productDetail);
+        return new BasicResponseVO("success");
     }
 
     @RequestMapping(method = RequestMethod.DELETE)

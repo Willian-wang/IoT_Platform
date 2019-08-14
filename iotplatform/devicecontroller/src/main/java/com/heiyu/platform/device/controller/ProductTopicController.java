@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @ClassName: ProductTopicController
- * @Description: //TODO
- * @Author: WangYi
- * @Date: 15:35 2019/8/7
- * @Version: 1.0
+ * 产品Topic（MQTT传输信息的标识符）控制类
+ * @author WangYi
+ * @date 15:35 2019/8/7
+ * @version 1.0
+ * //TODO 该类未完成
  **/
-
 @RequestMapping("/product/topic")
 @RestController
 public class ProductTopicController {

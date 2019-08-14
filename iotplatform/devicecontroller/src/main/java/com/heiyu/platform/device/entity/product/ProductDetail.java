@@ -9,15 +9,15 @@ public class ProductDetail extends BasicEntityPO {
     //产品类型
     private String categoryName;
     //节点类型：0，设备；1，网关
-    private byte nodeType;
+    private Byte nodeType;
     //产品状态：0，开发中；1，已上线；2，维护中；3，已废弃
-    private byte productStatus;
+    private Byte productStatus;
     //产品密码
     private String productSecret;
     //数据类型：0，json；1，未开放
-    private byte dataFormat;
+    private Byte dataFormat;
     //网络类型：0，LoRaWan；1，以太网；2，蜂窝；3，WIFI
-    private byte network;
+    private Byte network;
     //产品钥匙
     private String productKey;
     //是否动态注册
@@ -41,19 +41,19 @@ public class ProductDetail extends BasicEntityPO {
         this.categoryName = categoryName;
     }
 
-    public byte getNodeType() {
+    public Byte getNodeType() {
         return nodeType;
     }
 
-    public void setNodeType(byte nodeType) {
+    public void setNodeType(Byte nodeType) {
         this.nodeType = nodeType;
     }
 
-    public byte getProductStatus() {
+    public Byte getProductStatus() {
         return productStatus;
     }
 
-    public void setProductStatus(byte productStatus) {
+    public void setProductStatus(Byte productStatus) {
         this.productStatus = productStatus;
     }
 
@@ -65,19 +65,19 @@ public class ProductDetail extends BasicEntityPO {
         this.productSecret = productSecret;
     }
 
-    public byte getDataFormat() {
+    public Byte getDataFormat() {
         return dataFormat;
     }
 
-    public void setDataFormat(byte dataFormat) {
+    public void setDataFormat(Byte dataFormat) {
         this.dataFormat = dataFormat;
     }
 
-    public byte getNetwork() {
+    public Byte getNetwork() {
         return network;
     }
 
-    public void setNetwork(byte network) {
+    public void setNetwork(Byte network) {
         this.network = network;
     }
 

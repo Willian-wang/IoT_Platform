@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.heiyu.platform.device.dao.ProductInfMapper">
+    <resultMap type="com.heiyu.platform.device.entity.product.ProductDetail" id="ProductDetailMap">
+        <id property="id" column="product_id"/>
+        <result property="productName" column="product_inf_name"/>
+        <result property="userId" column="product_inf_user_id"/>
+        <result property="categoryName" column="product_inf_category_name"/>
+        <result property="nodeType" column="product_inf_node_type"/>
+        <result property="productStatus" column="product_inf_status"/>
+        <result property="productSecret" column="product_inf_secret"/>
+        <result property="dataFormat" column="product_inf_data_format"/>
+        <result property="network" column="product_inf_network"/>
+        <result property="productKey" column="product_inf_key"/>
+        <result property="autoRegister" column="product_inf_auto_register"/>
+        <result property="gmtCreateTime" column="product_inf_gmt_create"/>
+        <result property="gmtUpdateTime" column="product_inf_gmt_update"/>
+        <result property="remove" column="product_inf_is_remove"/>
+    </resultMap>
+
+    <sql id="condition">
+        <where>
+            <if test="condition.id != null AND condition != 0"></if>
+        </where>
+    </sql>
+
+    <insert id="insert" parameterType="com.heiyu.platform.device.entity.product.ProductDetail">
+        INSERT INTO  iot_product_inf(
+        product_id,
+        product_inf_name,
+        product_inf_user_id,
+        product_inf_category_name,
+        product_inf_node_type,
+        product_inf_status,
+        product_inf_secret,
+        product_inf_data_format,
+        product_inf_network,
+        product_inf_key,
+        product_inf_auto_register,
+        product_inf_gmt_create,
+        product_inf_gmt_update,
+        product_inf_is_remove
+        ) VALUE (
+        #{id},
+        #{productName},
+        #{userId},
+        #{categoryName},
+        #{nodeType},
+        #{productStatus},
+        #{productSecret},
+        #{dataFormat},
+        #{network},
+        #{productKey},
+        #{autoRegister},
+        #{gmtCreateTime},
+        #{gmtUpdateTime},
+        #{remove}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.heiyu.platform.device.entity.product.ProductDetail">
+        UPDATE iot_product_inf
+        SET
+        product_id  =#{id},
+        product_inf_name  =#{productName},
+        product_inf_user_id  =#{userId},
+        product_inf_category_name  =#{categoryName},
+        product_inf_node_type  =#{nodeType},
+        product_inf_status  =#{productStatus},
+        product_inf_secret  =#{productSecret},
+        product_inf_data_format  =#{dataFormat},
+        product_inf_network  =#{network},
+        product_inf_key  =#{productKey},
+        product_inf_auto_register  =#{autoRegister},
+        product_inf_gmt_create  =#{gmtCreateTime},
+        product_inf_gmt_update  =#{gmtUpdateTime},
+        product_inf_is_remove =#{remove}
+
+    </update>
+
+
+    <select id="getOne" parameterType="com.heiyu.platform.device.entity.product.ProductDetail" resultMap="ProductDetailMap">
+        SELECT * FROM iot_product_inf
+        <where>
+            <if test="condition.id != null AND condition.id != ''">
+                product_id = #{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="getAll" parameterType="com.heiyu.platform.device.entity.product.ProductDetail" resultMap="ProductDetailMap">
+        SELECT * FROM iot_product_inf
+    </select>
+
+
+</mapper>

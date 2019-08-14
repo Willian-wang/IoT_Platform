@@ -5,11 +5,10 @@ import org.springframework.stereotype.Component;
 import static java.lang.Thread.sleep;
 
 /**
- * @ClassName: HandleData
- * @Description: //TODO
- * @Author: WangYi
- * @Date: 14:46 2019/8/2
- * @Version: 1.0
+ * 信息处理类。这里是之前的demo,之后可能会有用
+ * @author WangYi
+ * @date 14:46 2019/8/2
+ * @version 1.0
  **/
 @Component
 public class HandleData{

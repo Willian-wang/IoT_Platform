@@ -6,11 +6,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.PropertySource;
 
 /**
- * @ClassName: RegisterBoot
- * @Description: //TODO
- * @Author: WangYi
- * @Date: 9:33 2019/8/1
- * @Version: 1.0
+ * 设备控制服务：
+ *    负责IOT平台的产品信息管理，设备信息管理，设备物模型的建立等功能。
+ * @author WangYi
+ * @date 9:33 2019/8/1
+ * @version 1.0
  **/
 
 @SpringBootApplication

@@ -10,15 +10,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author a007a
- * @version 1.0.0
+ * 使用了springboot，不需要对Mybatis的Mapper接口进行实现。
+ * 主要是验证Mybatis在springboot下可行。
+ *
+ * @author  a007a
+ * @version  1.0.0
  */
 @Repository
 @Mapper
 @PropertySource("classpath:spring.properties")
-public interface DeviceInfMapper {
-    @Select("SELECT * FROM iot_product_inf")
-    @ResultMap("com.heiyu.platform.device.dao.DeviceInfMapper.ProductDetailMap")
-    List<ProductDetail> getAll();
+public interface ProductInfMapper {
 
+    List<ProductDetail> getAll(ProductDetail condition );
+
+    ProductDetail getOne(ProductDetail condition);
+
+    void insert(ProductDetail productDetail);
+
+    void update(ProductDetail productDetail);
 }
