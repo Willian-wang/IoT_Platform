@@ -6,11 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 /**
- * @ClassName: DevcieStatusFactory
- * @Description: //TODO
- * @Author: WangYi
- * @Date: 11:51 2019/8/2
- * @Version: 1.0
+ * @author : WangYi
+ * @date : 11:51 2019/8/2
+ * @version  1.0
  **/
 @Component
 public class DeviceStatusFactory {

@@ -6,9 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="iotplatform" />
-        <module name="device_register" />
+        <module name="device-controller" />
         <module name="device_congroller" />
+        <module name="device_register" />
+        <module name="deivce-register" />
+        <module name="iotplatform" />
+        <module name="IoTPlatform" />
       </profile>
     </annotationProcessing>
   </component>

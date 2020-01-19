@@ -20,6 +20,8 @@ public class DeviceStatus {
     //设备类型
     private String deviceType;
 
+    private boolean deviceConnected;
+
     public DeviceStatus(){}
 
     public String getDeviceId() {
