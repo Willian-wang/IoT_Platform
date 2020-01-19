@@ -34,6 +34,7 @@ public class DataHandle {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
+
     @Async("taskExecutor")
     public void sendData() throws JsonProcessingException, MqttException, InterruptedException {
         MqttClient server = clientMQTT.getClient();

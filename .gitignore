@@ -1,5 +1,10 @@
 # Default ignored files
-.idea/*
-out/*
-target/*
+.idea/
+out/
+target/
+.settings/
+.classpath
+.factorypath
+.gitignore
+.project
 
