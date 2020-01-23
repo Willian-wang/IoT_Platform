@@ -17,11 +17,10 @@ import static com.heiyu.iot.sdk.common.IdGenerator.getId;
 
 
 /**
- * @ClassName: Main
- * @Description: //TODO
- * @Author: WangYi
- * @Date: 13:23 2019/8/1
- * @Version: 1.0
+ * //TODO
+ * @author : WangYi
+ * @date : 13:23 2019/8/1
+ * @version : 1.0
  **/
 
 @Service
