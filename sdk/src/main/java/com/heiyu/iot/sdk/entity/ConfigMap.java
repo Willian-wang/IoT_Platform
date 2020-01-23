@@ -9,11 +9,44 @@ package com.heiyu.iot.sdk.entity;
 
 public class ConfigMap {
 
-    DeviceInf deviceInf;
+    private DeviceInf deviceInf;
 
-    DeviceStatus deviceStatus;
+    private DeviceStatus deviceStatus;
 
-    SensorConfig sensorInf;
+    private SensorConfig[] sensorConfig;
 
-    MonitorConfig monitorConfig;
+    private MonitorConfig monitorConfig;
+
+    public DeviceInf getDeviceInf() {
+        return deviceInf;
+    }
+
+    public void setDeviceInf(DeviceInf deviceInf) {
+        this.deviceInf = deviceInf;
+    }
+
+    public DeviceStatus getDeviceStatus() {
+        return deviceStatus;
+    }
+
+    public void setDeviceStatus(DeviceStatus deviceStatus) {
+        this.deviceStatus = deviceStatus;
+    }
+
+
+    public SensorConfig[] getSensorConfig() {
+        return sensorConfig;
+    }
+
+    public void setSensorConfig(SensorConfig[] sensorConfig) {
+        this.sensorConfig = sensorConfig;
+    }
+
+    public MonitorConfig getMonitorConfig() {
+        return monitorConfig;
+    }
+
+    public void setMonitorConfig(MonitorConfig monitorConfig) {
+        this.monitorConfig = monitorConfig;
+    }
 }

@@ -21,7 +21,7 @@ import javax.annotation.PostConstruct;
  * @Date: 14:14 2019/8/1
  * @Version: 1.0
  **/
-@Service
+//@Service
 public class StartThread {
 
     @Autowired

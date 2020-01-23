@@ -2,8 +2,10 @@ package com.heiyu.iot.sdk.configure;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import javax.annotation.Resource;
 
@@ -15,7 +17,8 @@ import javax.annotation.Resource;
  * @Version: 1.0
  **/
 @Configuration
-//@ConfigurationProperties(prefix = "register")
+@ConfigurationProperties(prefix = "register")
+@PropertySource("classpath:config.properties")
 public class Dict {
 
     @Value("${register.clientName}")

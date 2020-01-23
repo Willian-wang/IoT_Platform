@@ -48,4 +48,11 @@ public class DeviceStatus {
         this.deviceStatusCode = deviceStatusCode;
     }
 
+    public boolean isDeviceConnected() {
+        return deviceConnected;
+    }
+
+    public void setDeviceConnected(boolean deviceConnected) {
+        this.deviceConnected = deviceConnected;
+    }
 }
