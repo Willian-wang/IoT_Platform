@@ -1,10 +1,10 @@
 {
   "deviceInf": {},
   "deviceStatus": {
-    "deviceId": "233",
-    "deviceStatusCode": 2,
-    "deviceType": "raspberry pi4",
-    "deviceConnected": 0
+        "deviceId": "233",
+        "deviceStatusCode": 2,
+        "deviceType": "raspberry pi4",
+        "deviceConnected": 0
   },
   "sensorConfig": [],
   "monitorConfig": {}

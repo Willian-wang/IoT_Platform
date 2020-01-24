@@ -15,6 +15,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import static com.heiyu.iot.sdk.entity.ConfigMap.getConfigMap;
+
 /**
  * //TODO
  * @author : William—Wang
@@ -26,11 +28,16 @@ public class ConfigMapHandle {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private static final  String CONFIG_MAP_JSON = "map.json";
 
-    ConfigMapHandle() throws ConfigMapHandleException {
-//        readConfigMapCache();
-//        syncConfigMapCache();
+
+    ConfigMapHandle() throws ConfigMapHandleException, URISyntaxException {
+
+
+    }
+
+    public  void gettingStart() throws URISyntaxException, ConfigMapHandleException {
+
+        ConfigMap configMap = getConfigMap();
 
     }
 
@@ -38,25 +45,7 @@ public class ConfigMapHandle {
 
     }
 
-    ConfigMap readConfigMapCache() throws ConfigMapHandleException, URISyntaxException {
-        ObjectMapper objMapper = new ObjectMapper();
-        objMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS,false);
-        URI uri= this.getClass().getClassLoader().getResource(CONFIG_MAP_JSON).toURI();
-        System.out.println(uri.getPath());
-         File file = new File(uri.getPath());
-//        File file = new File("F:/项目/IoT/SDK/target/classes/map.json");
-         if(file.exists()){
-             ConfigMap configMap = null;
-             try {
-                 configMap = objMapper.readValue(file, ConfigMap.class);
-             } catch (IOException e) {
-                 System.out.println(e);
-                 throw new ConfigMapHandleException("Parse json file error: "+ e.toString());
-             } return configMap;
-         }else{
-             throw new ConfigMapHandleException("Can't find configMap cache file!");
-         }
-    }
+
 
     private void readSensorConfigMapCache(){
 

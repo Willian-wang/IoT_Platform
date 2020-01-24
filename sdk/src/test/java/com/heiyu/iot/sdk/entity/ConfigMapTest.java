@@ -1,13 +1,16 @@
-package com.heiyu.iot.sdk.configure;
+package com.heiyu.iot.sdk.entity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.heiyu.iot.sdk.configure.ConfigMapHandle;
+import com.heiyu.iot.sdk.configure.ConfigMapHandleException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import sun.security.krb5.Config;
 
 import java.net.URISyntaxException;
 
@@ -19,16 +22,14 @@ import java.net.URISyntaxException;
  **/
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ConfigMapHandleTest {
-
-    @Autowired
-    ConfigMapHandle configMapHandle;
+public class ConfigMapTest {
 
     @Test
     public void readConfigMapCacheTest() throws ConfigMapHandleException, JsonProcessingException, URISyntaxException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS,false);
-        System.out.println(objectMapper.writeValueAsString(configMapHandle.readConfigMapCache()));
+        System.out.println(objectMapper.writeValueAsString(ConfigMap.getConfigMap()));
     }
+
 
 }
