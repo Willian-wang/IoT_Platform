@@ -1,5 +1,7 @@
 package com.heiyu.iot.sdk.sensor.datahandle;
 
+import com.heiyu.iot.sdk.entity.Sensor.i2c.I2cSensorData;
+import com.heiyu.iot.sdk.entity.SensorConfig;
 import com.heiyu.iot.sdk.sensor.device.I2cSensor;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,12 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class I2cDataHandle {
 
-    @Autowired
+
     I2cSensor i2cSensor;
 
-    public I2cDataHandle(){
-        new I2cSensor();
-        i2cSensor.getI2cBus();
+    I2cSensorData i2cSensorData;
+
+    public I2cDataHandle(SensorConfig sensorConfig){
+
     }
 
     public void i2cReadData(){

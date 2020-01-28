@@ -17,7 +17,7 @@ import java.net.URISyntaxException;
  * @date : 17:03 2020/1/23
  * ConfigMap is the configuration of sdk.
  * It reads configuration from the json file in java path.
- * It is singleton which means only one ConfigMap can be implement.
+ * It is singleton which means only one ConfigMap can be implemented.
  **/
 public class ConfigMap {
 
