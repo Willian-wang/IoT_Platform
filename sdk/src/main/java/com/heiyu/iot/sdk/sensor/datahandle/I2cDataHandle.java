@@ -2,8 +2,15 @@ package com.heiyu.iot.sdk.sensor.datahandle;
 
 import com.heiyu.iot.sdk.entity.Sensor.i2c.I2cSensorData;
 import com.heiyu.iot.sdk.entity.SensorConfig;
+import com.heiyu.iot.sdk.mqtt.ClientMQTT;
 import com.heiyu.iot.sdk.sensor.device.I2cSensor;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.stereotype.Component;
 
 /**
  * //TODO
@@ -13,18 +20,21 @@ import org.springframework.beans.factory.annotation.Autowired;
  **/
 
 
-public class I2cDataHandle {
+public class I2cDataHandle implements Job {
 
 
-    I2cSensor i2cSensor;
-
-    I2cSensorData i2cSensorData;
-
-    public I2cDataHandle(SensorConfig sensorConfig){
-
+    @Override
+    public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+        System.out.println("23333");
+        System.out.println(jobExecutionContext.getMergedJobDataMap().get("mqttClient"));
+        System.out.println(jobExecutionContext.getMergedJobDataMap().get("sensorConfig"));
     }
 
+
+
     public void i2cReadData(){
+
+
 
     }
 }

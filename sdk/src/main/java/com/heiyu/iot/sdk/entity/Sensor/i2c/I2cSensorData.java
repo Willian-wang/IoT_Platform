@@ -16,8 +16,7 @@ public class I2cSensorData extends AbstractSensorData {
     private int i2cBusNum;
     /**i2c地址*/
     private int i2cAddress;
-    /**读取消息频率*/
-    private long readFrequency;
+
 
     public I2cDataSheet[] getI2cDataSheet() {
         return i2cDataSheet;
@@ -43,12 +42,5 @@ public class I2cSensorData extends AbstractSensorData {
         this.i2cAddress = i2cAddress;
     }
 
-    public long getReadFrequency() {
-        return readFrequency;
-    }
-
-    public void setReadFrequency(long readFrequency) {
-        this.readFrequency = readFrequency;
-    }
 }
 

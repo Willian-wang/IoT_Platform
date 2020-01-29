@@ -12,6 +12,7 @@
       "sensorId": 1237128474,
       "configVersion": 1237128474,
       "fatherDeviceId": 233,
+      "readFrequency": 1000,
       "sensorType": "Hub",
       "sensorData": {
         "i2cDataSheet": [
@@ -135,9 +136,9 @@
           }
         ],
         "i2cBusNum": 22,
-        "sensorInterfaceType": "I2C",
-        "i2cAddress": 0,
-        "readFrequency": 0
+        "sensorInterfaceType": "i2c",
+        "i2cAddress": 0
+
       }
     }
   ],

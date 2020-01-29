@@ -68,11 +68,17 @@ public class ConfigMap {
     }
 
 
-    public static ConfigMap getConfigMap() throws URISyntaxException, ConfigMapHandleException {
+    public static ConfigMap getConfigMap()  {
         if(configMap == null){
             synchronized (ConfigMap.class){
                 if(configMap == null){
-                    configMap =  readConfigMapCache();
+                    try {
+                        configMap =  readConfigMapCache();
+                    } catch (ConfigMapHandleException e) {
+                        e.printStackTrace();
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }return configMap;
