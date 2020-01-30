@@ -1,6 +1,7 @@
 package com.heiyu.iot.sdk.sensor.datahandle;
 
 import com.heiyu.iot.sdk.entity.Sensor.AbstractSensorData;
+import com.heiyu.iot.sdk.entity.Sensor.SensorDataDTO;
 import com.heiyu.iot.sdk.entity.Sensor.i2c.I2cDataSheet;
 import com.heiyu.iot.sdk.entity.Sensor.i2c.I2cSensorData;
 import com.heiyu.iot.sdk.entity.SensorConfig;
@@ -30,11 +31,18 @@ public class I2cReadData implements Job {
 
     private HashMap<Byte, Integer> rawData;
 
+    private SensorConfig sensorConfig;
+
+    private I2cSensorData i2cSensorData;
+
+    private MqttClient mqttClient;
+
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        SensorConfig sensorConfig = (SensorConfig) jobExecutionContext.getMergedJobDataMap().get("sensorConfig");
-        MqttClient mqttClient = (MqttClient) jobExecutionContext.getMergedJobDataMap().get("mqttClient");
-        i2cReadData((I2cSensorData) sensorConfig.getSensorData());
+        sensorConfig = (SensorConfig) jobExecutionContext.getMergedJobDataMap().get("sensorConfig");
+        mqttClient = (MqttClient) jobExecutionContext.getMergedJobDataMap().get("mqttClient");
+        i2cSensorData = (I2cSensorData) sensorConfig.getSensorData();
+        i2cReadData(i2cSensorData);
         i2cFormatData();
         sendData();
     }
@@ -69,10 +77,29 @@ public class I2cReadData implements Job {
                 ,readRegister.toArray(new Byte[0])
                 ,writeRegister.toArray(new Byte[0]));
         rawData = i2cSensor.readData();
+        System.out.println(rawData.get((byte)1));
     }
 
     public void i2cFormatData(){
+        SensorDataDTO sensorDataDTO = new SensorDataDTO(sensorConfig.getSensorId());
 
+        ArrayList<SensorDataDTO.DataDTO> dataDTOArrayList = new ArrayList<SensorDataDTO.DataDTO>();
+        for(I2cDataSheet i2cDataSheet : i2cSensorData.getI2cDataSheet()){
+            switch (i2cDataSheet.getDataPositionType()){
+                case 0:
+                    SensorDataDTO.DataDTO data = sensorDataDTO.getDataDTOInstance();
+                    data.setDataId(i2cDataSheet.getDataId())
+                            .setDataName(i2cDataSheet.getDataName())
+                            .setDataType(i2cDataSheet.getDataType())
+                            .setData(rawData.get(i2cDataSheet.getDataPosition()[0]));
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                default:
+            }
+        }
     }
 
     private void sendData(){

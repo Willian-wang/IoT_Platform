@@ -62,6 +62,7 @@ public class I2cSensor implements Sensor {
             if (device != null) {
                 for (Byte register : readRegister) {
                     sensorData.put(register, device.read(register));
+//                    System.out.println(""+register+" , "+device.read(register));
                 }
             }
         } catch (IOException e) {

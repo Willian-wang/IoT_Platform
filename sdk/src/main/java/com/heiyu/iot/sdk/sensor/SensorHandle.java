@@ -51,7 +51,7 @@ public class SensorHandle {
     public void readSensorConfig(SensorConfig[] sensorConfigs){
         for(SensorConfig sensorConfig:sensorConfigs){
             JobDataMap jobDataMap =  new JobDataMap();
-            jobDataMap.put("sensorConfig", ConfigMap.getConfigMap());
+            jobDataMap.put("sensorConfig", sensorConfig);
             jobDataMap.put("mqttClient",client);
             Trigger trigger = TriggerBuilder.newTrigger()
                     .startNow()

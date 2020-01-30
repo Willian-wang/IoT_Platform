@@ -156,7 +156,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.heiyu.register.mqtt.receive.ClientMQTT</mainClass>
+                            <mainClass>com.heiyu.iot.sdk.SDKBoot</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

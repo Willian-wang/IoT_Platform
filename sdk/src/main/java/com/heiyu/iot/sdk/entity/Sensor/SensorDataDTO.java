@@ -1,9 +1,14 @@
 package com.heiyu.iot.sdk.entity.Sensor;
 
+import com.heiyu.iot.sdk.entity.ConfigMap;
 import com.heiyu.iot.sdk.entity.MessageHeader;
+import com.heiyu.iot.sdk.entity.SensorConfig;
+import com.heiyu.iot.sdk.sensor.device.Sensor;
+import com.sun.corba.se.spi.servicecontext.SendingContextServiceContext;
 
-import java.util.Map;
-import java.util.StringJoiner;
+import javax.xml.crypto.Data;
+import java.sql.DatabaseMetaData;
+import java.util.ArrayList;
 
 /**
  * @author : WangYi
@@ -19,8 +24,17 @@ public class SensorDataDTO extends MessageHeader {
     /**传感器ID*/
     private long sensorId;
     /**连接传感器设备的父节点ID*/
-    private long fatherDeviceId;
-    private Map<String,Object> sensorData;
+    private Long fatherDeviceId;
+
+    private DataDTO[] dataDTO;
+
+    public DataDTO[] getDataDTO() {
+        return dataDTO;
+    }
+
+    public void setDataDTO(DataDTO[] dataDTO) {
+        this.dataDTO = dataDTO;
+    }
 
     public String getSensorName() {
         return sensorName;
@@ -46,11 +60,67 @@ public class SensorDataDTO extends MessageHeader {
         this.fatherDeviceId = fatherDeviceId;
     }
 
-    public Map<String, Object> getSensorData() {
-        return sensorData;
+    public SensorDataDTO(Long sensorId){
+        for(SensorConfig sensorConfig :ConfigMap.getConfigMap().getSensorConfig()){
+            if(sensorConfig.getSensorId() == sensorId){
+                this.sensorName = sensorConfig.getSensorName();
+                this.sensorId = sensorConfig.getSensorId();
+                this.fatherDeviceId = sensorConfig.getFatherDeviceId();
+//                this.dataDTO = new A
+            }
+        }
+
     }
 
-    public void setSensorData(Map<String, Object> sensorData) {
-        this.sensorData = sensorData;
+    public DataDTO getDataDTOInstance(){
+        return new DataDTO();
+    }
+
+    public class DataDTO{
+        private  String  dataName;
+        private  Long dataId;
+        private String dataType;
+
+        public Object getData() {
+            return data;
+        }
+
+        public DataDTO setData(Object data) {
+            this.data = data;
+            return this;
+        }
+
+        private Object data;
+
+
+
+        public String getDataName() {
+            return dataName;
+        }
+
+        public DataDTO setDataName(String dataName) {
+            this.dataName = dataName;
+            return this;
+        }
+
+        public Long getDataId() {
+            return dataId;
+        }
+
+        public DataDTO setDataId(Long dataId) {
+            this.dataId = dataId;
+            return this;
+        }
+
+        public String getDataType() {
+            return dataType;
+        }
+
+        public DataDTO setDataType(String dataType) {
+            this.dataType = dataType;
+            return this;
+        }
+
     }
 }
+

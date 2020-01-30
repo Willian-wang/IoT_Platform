@@ -135,9 +135,9 @@
             "dataIOType": 0
           }
         ],
-        "i2cBusNum": 22,
+        "i2cBusNum": 1,
         "sensorInterfaceType": "i2c",
-        "i2cAddress": 0
+        "i2cAddress": 23
 
       }
     }
