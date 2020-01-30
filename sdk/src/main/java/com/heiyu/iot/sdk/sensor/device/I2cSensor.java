@@ -19,10 +19,12 @@ public class I2cSensor implements Sensor {
 
     private int i2cBusNum;
     private int i2cAddress;
-    private byte[] readRegister;
-    private byte[] writeRegister;
+    private Byte[] readRegister;
+    private Byte[] writeRegister;
 
-    public void I2cSensor(int i2cBus, int i2cAddress, byte[] readRegister, byte[] writeRegister) {
+
+
+    public I2cSensor(int i2cBus, int i2cAddress, Byte[] readRegister, Byte[] writeRegister) {
         this.i2cBusNum = i2cBus;
         this.i2cAddress = i2cAddress;
         this.writeRegister = writeRegister;
