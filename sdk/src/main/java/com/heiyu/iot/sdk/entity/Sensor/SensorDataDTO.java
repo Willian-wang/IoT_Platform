@@ -72,7 +72,7 @@ public class SensorDataDTO extends MessageHeader {
 
     }
 
-    public DataDTO getDataDTOInstance(){
+    public DataDTO DataDTOInstance(){
         return new DataDTO();
     }
 

@@ -28,6 +28,7 @@ public class ConfigMapHandle {
     @Autowired
     private SensorHandle sensorHandle;
 
+
     @PostConstruct
     public  void readConfigMap() throws URISyntaxException, ConfigMapHandleException {
         ConfigMap configMap = getConfigMap();

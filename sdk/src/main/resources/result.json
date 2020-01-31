@@ -1,0 +1,85 @@
+{
+  "sensorName": "SensorHub",
+  "sensorId": 1237128474,
+  "fatherDeviceId": 233,
+  "dataDTO": [
+    {
+      "dataName": "分机温度",
+      "dataId": 1,
+      "dataType": "int",
+      "data": 30
+    },
+    {
+      "dataName": "光亮",
+      "dataId": 2,
+      "dataType": "int",
+      "data": 1
+    },
+    {
+      "dataName": "温度溢出",
+      "dataId": 3,
+      "dataType": "boolean",
+      "data": false
+    },
+    {
+      "dataName": "找到温度",
+      "dataId": 4,
+      "dataType": "boolean",
+      "data": false
+    },
+    {
+      "dataName": "光强溢出",
+      "dataId": 5,
+      "dataType": "boolean",
+      "data": false
+    },
+    {
+      "dataName": "找到光强",
+      "dataId": 6,
+      "dataType": "boolean",
+      "data": false
+    },
+    {
+      "dataName": "板载温度",
+      "dataId": 7,
+      "dataType": "int",
+      "data": 38
+    },
+    {
+      "dataName": "板载湿度",
+      "dataId": 8,
+      "dataType": "int",
+      "data": 15
+    },
+    {
+      "dataName": "板载温湿度传感器错误",
+      "dataId": 9,
+      "dataType": "boolean",
+      "data": false
+    },
+    {
+      "dataName": "气压计温度",
+      "dataId": 10,
+      "dataType": "int",
+      "data": 38
+    },
+    {
+      "dataName": "气压计气压",
+      "dataId": 11,
+      "dataType": "int",
+      "data": 102257
+    },
+    {
+      "dataName": "气压计错误",
+      "dataId": 12,
+      "dataType": "boolean",
+      "data": false
+    },
+    {
+      "dataName": "有人接近",
+      "dataId": 13,
+      "dataType": "boolean",
+      "data": false
+    }
+  ]
+}

@@ -20,6 +20,8 @@ import static com.heiyu.iot.sdk.configure.DataDictionary.SENSOR_I2C;
 //        @JsonSubTypes.Type(name="cat",value= Sensor.class),
 })
 public abstract class AbstractSensorData {
+
+    /**传感器接口类型：SPI,I2C,GPIO,UART*/
     @JsonTypeId
     private String sensorInterfaceType;
 
@@ -31,6 +33,10 @@ public abstract class AbstractSensorData {
         this.sensorInterfaceType = sensorInterfaceType;
     }
 
-    /**传感器接口类型：SPI,I2C,GPIO,UART*/
+    /**
+     * 获取传感器数据定义表的方法接口
+     * @return 传感器数据定义表
+     */
+    public abstract AbstractSensorDataSheet[] getDataSheets();
 
 }

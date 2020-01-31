@@ -6,33 +6,71 @@
     "deviceType": "raspberry pi4",
     "deviceConnected": 0
   },
-  "sensorConfig": [
+  "sensorConfig":[ {"sensorName": "SensorHub",
+    "sensorId": 1237128475,
+    "configVersion": 1237128475,
+    "fatherDeviceId": 233,
+    "readFrequency": 10000,
+    "sensorType": "Air",
+    "sensorData":
+    {
+      "i2cDataSheet": [
+        {
+          "dataName": "等效CO2浓度",
+          "dataId": 1,
+          "dataType": "int",
+          "dataPositionType": 2,
+          "dataPosition": [1],
+          "dataOffset": 0,
+          "dataMagnitude": 0,
+          "dataLength": 0,
+          "dataIOType": 0
+        },
+        {
+          "dataName": "分机温度",
+          "dataId": 1,
+          "dataType": "int",
+          "dataPositionType": 0,
+          "dataPosition": [1],
+          "dataOffset": 0,
+          "dataMagnitude": 0,
+          "dataLength": 0,
+          "dataIOType": 0
+        }
+      ],
+      "i2cBusNum": 1,
+      "sensorInterfaceType": "i2c",
+      "i2cAddress": 88
+    }
+  },
     {
       "sensorName": "SensorHub",
       "sensorId": 1237128474,
       "configVersion": 1237128474,
       "fatherDeviceId": 233,
-      "readFrequency": 1000,
+      "readFrequency": 10000,
       "sensorType": "Hub",
       "sensorData": {
         "i2cDataSheet": [
           {
             "dataName": "分机温度",
             "dataId": 1,
-            "dataType": "number",
+            "dataType": "int",
             "dataPositionType": 0,
             "dataPosition": [1],
             "dataOffset": 0,
+            "dataMagnitude": 0,
             "dataLength": 0,
             "dataIOType": 0
           },{
             "dataName": "光亮",
             "dataId": 2,
-            "dataType": "number",
+            "dataType": "int",
             "dataPositionType": 2,
             "dataPosition": [2,3],
             "dataOffset": 0,
             "dataLength": 0,
+            "dataMagnitude": 0,
             "dataIOType": 0
           },{
             "dataName": "温度溢出",
@@ -42,6 +80,7 @@
             "dataPosition": [4],
             "dataOffset": 0,
             "dataLength": 1,
+            "dataMagnitude": 0,
             "dataIOType": 0
           },{
             "dataName": "找到温度",
@@ -50,6 +89,7 @@
             "dataPositionType": 1,
             "dataPosition": [4],
             "dataOffset": 1,
+            "dataMagnitude": 0,
             "dataLength": 1,
             "dataIOType": 0
           },{
@@ -60,7 +100,8 @@
             "dataPosition": [4],
             "dataOffset": 2,
             "dataLength": 1,
-            "dataIOType": 0
+            "dataIOType": 0,
+            "dataMagnitude": 0
           },{
             "dataName": "找到光强",
             "dataId": 6,
@@ -69,23 +110,26 @@
             "dataPosition": [4],
             "dataOffset": 3,
             "dataLength": 1,
-            "dataIOType": 0
+            "dataIOType": 0,
+            "dataMagnitude": 0
           },{
             "dataName": "板载温度",
             "dataId": 7,
-            "dataType": "number",
+            "dataType": "int",
             "dataPositionType": 0,
             "dataPosition": [5],
             "dataOffset": 0,
             "dataLength": 0,
-            "dataIOType": 0
+            "dataIOType": 0,
+            "dataMagnitude": 0
           },{
             "dataName": "板载湿度",
             "dataId": 8,
-            "dataType": "number",
+            "dataType": "int",
             "dataPositionType": 0,
             "dataPosition": [6],
             "dataOffset": 0,
+            "dataMagnitude": 0,
             "dataLength": 0,
             "dataIOType": 0
           },{
@@ -96,39 +140,44 @@
             "dataPosition": [7],
             "dataOffset": 0,
             "dataLength": 0,
+            "dataMagnitude": 0,
             "dataIOType": 0
           },{
             "dataName": "气压计温度",
             "dataId": 10,
-            "dataType": "number",
+            "dataType": "int",
             "dataPositionType": 0,
             "dataPosition": [8],
             "dataOffset": 0,
             "dataLength": 0,
+            "dataMagnitude": 0,
             "dataIOType": 0
           },{
             "dataName": "气压计气压",
             "dataId": 11,
-            "dataType": "number",
+            "dataType": "int",
             "dataPositionType": 2,
             "dataPosition": [9,10,11],
             "dataOffset": 0,
             "dataLength": 0,
+            "dataMagnitude": 0,
             "dataIOType": 0
           },{
             "dataName": "气压计错误",
-            "dataId": 11,
+            "dataId": 12,
             "dataType": "boolean",
             "dataPositionType": 0,
             "dataPosition": [12],
             "dataOffset": 0,
             "dataLength": 0,
+            "dataMagnitude": 0,
             "dataIOType": 0
           },{
             "dataName": "有人接近",
-            "dataId": 12,
+            "dataId": 13,
             "dataType": "boolean",
             "dataPositionType": 0,
+            "dataMagnitude": 0,
             "dataPosition": [13],
             "dataOffset": 0,
             "dataLength": 0,

@@ -1,9 +1,10 @@
 package com.heiyu.iot.sdk.sensor;
 
-import com.heiyu.iot.sdk.entity.ConfigMap;
+import com.heiyu.iot.sdk.configure.Dict;
 import com.heiyu.iot.sdk.entity.SensorConfig;
 import com.heiyu.iot.sdk.mqtt.ClientMQTT;
 import com.heiyu.iot.sdk.sensor.datahandle.I2cReadData;
+import com.heiyu.iot.sdk.sensor.datahandle.SendSensorData;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,9 @@ public class SensorHandle {
     private MqttClient client;
 
     @Autowired
+    private Dict dict;
+
+    @Autowired
     SensorHandle(ClientMQTT clientMQTT){
         client = clientMQTT.getClient();
     }
@@ -51,8 +55,10 @@ public class SensorHandle {
     public void readSensorConfig(SensorConfig[] sensorConfigs){
         for(SensorConfig sensorConfig:sensorConfigs){
             JobDataMap jobDataMap =  new JobDataMap();
+            SendSensorData sendSensorData = new SendSensorData();
+            sendSensorData.setClient(client).setTopic(dict.getTopicSendSensorData());
+            jobDataMap.put("sendSensorData",sendSensorData);
             jobDataMap.put("sensorConfig", sensorConfig);
-            jobDataMap.put("mqttClient",client);
             Trigger trigger = TriggerBuilder.newTrigger()
                     .startNow()
                     .withSchedule(simpleSchedule()
@@ -71,7 +77,5 @@ public class SensorHandle {
             }
         }
     }
-
-
 
 }

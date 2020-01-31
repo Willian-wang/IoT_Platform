@@ -7,7 +7,7 @@ package com.heiyu.iot.sdk.entity.Sensor;
  * @date : 21:04 2020/1/25
  **/
 
-public abstract class AbstrateSensorDataSheet {
+public abstract class AbstractSensorDataSheet {
     /**数据字段名字*/
     private String dataName;
     /**数据字段ID*/
@@ -17,6 +17,19 @@ public abstract class AbstrateSensorDataSheet {
      * 数据类型：String Integer Double Boolean Enum
      **/
     private String dataType;
+    /**
+     * 数据的数量级
+     * {data}×10^{dataMagnitude}
+     */
+    private int dataMagnitude;
+
+    public int getDataMagnitude() {
+        return dataMagnitude;
+    }
+
+    public void setDataMagnitude(int dataMagnitude) {
+        this.dataMagnitude = dataMagnitude;
+    }
 
     public String getDataName() {
         return dataName;

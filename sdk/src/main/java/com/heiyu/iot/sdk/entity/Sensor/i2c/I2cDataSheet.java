@@ -1,6 +1,6 @@
 package com.heiyu.iot.sdk.entity.Sensor.i2c;
 
-import com.heiyu.iot.sdk.entity.Sensor.AbstrateSensorDataSheet;
+import com.heiyu.iot.sdk.entity.Sensor.AbstractSensorDataSheet;
 
 /**
  * //TODO
@@ -9,12 +9,12 @@ import com.heiyu.iot.sdk.entity.Sensor.AbstrateSensorDataSheet;
  * @date : 15:36 2020/1/26
  **/
 
-public class I2cDataSheet extends AbstrateSensorDataSheet {
+public class I2cDataSheet extends AbstractSensorDataSheet {
     /**
      * 数据字段的数据位置类型
-     * 0: Regular 常规的
+     * 0: Normal 常规的
      * 1: Inside 和其他数据公用字段
-     * 2: Combination 需要占用多个位置
+     * 2: Multi  需要占用多个寄存器
      **/
     private byte dataPositionType;
     /**
