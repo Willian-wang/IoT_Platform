@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Ê¹ÓÃÁËspringboot£¬²»ĞèÒª¶ÔMybatisµÄMapper½Ó¿Ú½øĞĞÊµÏÖ¡£
- * Ö÷ÒªÊÇÑéÖ¤MybatisÔÚspringbootÏÂ¿ÉĞĞ¡£
+ * ä½¿ç”¨äº†springbootï¼Œä¸éœ€è¦å¯¹Mybatisçš„Mapperæ¥å£è¿›è¡Œå®ç°ã€‚
+ * ä¸»è¦æ˜¯éªŒè¯Mybatisåœ¨springbootä¸‹å¯è¡Œã€‚
  *
  * @author  a007a
  * @version  1.0.0

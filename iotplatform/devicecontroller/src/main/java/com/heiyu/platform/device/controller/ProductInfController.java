@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * ²úÆ·ĞÅÏ¢¿ØÖÆÀà£¬Ìí¼Ó£¬É¾³ı£¬ĞŞ¸Ä¡£
+ * äº§å“ä¿¡æ¯æ§åˆ¶ç±»ï¼Œæ·»åŠ ï¼Œåˆ é™¤ï¼Œä¿®æ”¹ã€‚
  * @author WangYi
  * @date 14:29 2019/8/7
  * @version 1.0
- * //TODO ¸ÃÀàÎ´Íê³É
+ * //TODO è¯¥ç±»æœªå®Œæˆ
  **/
 @RequestMapping("/product/inf")
 @RestController

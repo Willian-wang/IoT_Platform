@@ -6,43 +6,7 @@
     "deviceType": "raspberry pi4",
     "deviceConnected": 0
   },
-  "sensorConfig":[ {"sensorName": "SensorHub",
-    "sensorId": 1237128475,
-    "configVersion": 1237128475,
-    "fatherDeviceId": 233,
-    "readFrequency": 10000,
-    "sensorType": "Air",
-    "sensorData":
-    {
-      "i2cDataSheet": [
-        {
-          "dataName": "等效CO2浓度",
-          "dataId": 1,
-          "dataType": "int",
-          "dataPositionType": 2,
-          "dataPosition": [1],
-          "dataOffset": 0,
-          "dataMagnitude": 0,
-          "dataLength": 0,
-          "dataIOType": 0
-        },
-        {
-          "dataName": "分机温度",
-          "dataId": 1,
-          "dataType": "int",
-          "dataPositionType": 0,
-          "dataPosition": [1],
-          "dataOffset": 0,
-          "dataMagnitude": 0,
-          "dataLength": 0,
-          "dataIOType": 0
-        }
-      ],
-      "i2cBusNum": 1,
-      "sensorInterfaceType": "i2c",
-      "i2cAddress": 88
-    }
-  },
+  "sensorConfig":[
     {
       "sensorName": "SensorHub",
       "sensorId": 1237128474,

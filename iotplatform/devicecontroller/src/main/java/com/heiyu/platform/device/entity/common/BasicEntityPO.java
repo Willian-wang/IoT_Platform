@@ -5,7 +5,7 @@ import com.heiyu.platform.device.common.IdGenerator;
 import java.sql.Timestamp;
 
 /**
- * 基础PO类，所有PO类都会有ID,创建时间，更新时间，删除标记四个数据
+ * 鍩虹PO绫伙紝鎵�鏈塒O绫婚兘浼氭湁ID,鍒涘缓鏃堕棿锛屾洿鏂版椂闂达紝鍒犻櫎鏍囪鍥涗釜鏁版嵁
  * @author WangYi
  * @date 11:40 2019/8/6
  * @version 1.0

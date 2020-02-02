@@ -1,7 +1,11 @@
 package com.heiyu.iot.sdk;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+
+import javax.swing.*;
 
 /**
  * @ClassName: SDKBoot
@@ -14,6 +18,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SDKBoot {
     public static void  main(String[] str){
-        SpringApplication.run(SDKBoot.class,str);
+//        SpringApplication.run(SDKBoot.class,str);
+        new SpringApplicationBuilder(SDKBoot.class)
+                .web(WebApplicationType.NONE)
+                .run(str);
     }
 }

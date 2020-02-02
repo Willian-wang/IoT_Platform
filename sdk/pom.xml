@@ -133,7 +133,7 @@
                 </configuration>
             </plugin>
 
-                    <plugin>
+            <plugin>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
                         <executions>
@@ -155,7 +155,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <addClasspath>true</addClasspath>
+<!--                            <addClasspath>true</addClasspath>-->
                             <mainClass>com.heiyu.iot.sdk.SDKBoot</mainClass>
                         </manifest>
                     </archive>

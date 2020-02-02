@@ -1,23 +1,23 @@
 package com.heiyu.platform.device.entity.datatype;
 
 /**
- * ÀàÄ£ĞÍ£¬Êı¾İÓòÖĞ£¬NumberÀàĞÍ×Ö¶Î
- * //TODO Î´Íê³É
+ * ç±»æ¨¡å‹ï¼Œæ•°æ®åŸŸä¸­ï¼ŒNumberç±»å‹å­—æ®µ
+ * //TODO æœªå®Œæˆ
  * @author WangYi
  * @date 17:43 2019/8/6
  * @version 1.0
  **/
 
 public class Number {
-    //µ¥Î»
+    //å•ä½
     private String unit;
-    //²½³¤
+    //æ­¥é•¿
     private int step;
-    //Êı¾İÀàĞÍ
+    //æ•°æ®ç±»å‹
     private int dataType;
-    //×î´óÖµ
+    //æœ€å¤§å€¼
     private int max;
-    //×îĞ¡Öµ
+    //æœ€å°å€¼
     private int min;
 
 }

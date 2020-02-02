@@ -3,7 +3,7 @@ package com.heiyu.platform.device.entity;
 import com.heiyu.platform.device.entity.datatype.ThingFunctionDataType;
 
 /**
- * Éè±¸¹¦ÄÜ¶¨ÒåDTOÀà
+ * è®¾å¤‡åŠŸèƒ½å®šä¹‰DTOç±»
  * @author WangYi
  * @date 17:22 2019/8/6
  * @version 1.0
@@ -11,7 +11,7 @@ import com.heiyu.platform.device.entity.datatype.ThingFunctionDataType;
 
 public class ThingFuctionDTO {
 
-     //²úÆ·ÃØÔ¿
+     //äº§å“ç§˜é’¥
      private String productKey;
      //
      private String abilityType;

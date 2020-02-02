@@ -6,10 +6,10 @@ import com.heiyu.iot.sdk.configure.ConfigMapHandleException;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.stream.Collectors;
 
 /**
  * @author : William—Wang
@@ -73,10 +73,8 @@ public class ConfigMap {
             synchronized (ConfigMap.class){
                 if(configMap == null){
                     try {
-                        configMap =  readConfigMapCache();
+                        configMap = readConfigMapCache();
                     } catch (ConfigMapHandleException e) {
-                        e.printStackTrace();
-                    } catch (URISyntaxException e) {
                         e.printStackTrace();
                     }
                 }
@@ -84,23 +82,29 @@ public class ConfigMap {
         }return configMap;
     }
 
-    private static ConfigMap readConfigMapCache() throws ConfigMapHandleException, URISyntaxException {
+    private static ConfigMap readConfigMapCache() throws ConfigMapHandleException {
         ObjectMapper objMapper = new ObjectMapper();
         objMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS,false);
-        URI uri= ConfigMap.class.getClassLoader().getResource(CONFIG_MAP_JSON).toURI();
-        System.out.println(uri.getPath());
-        File file = new File(uri.getPath());
-        if(file.exists()){
-            ConfigMap configMap = null;
-            try {
-                configMap = objMapper.readValue(file, ConfigMap.class);
-            } catch (IOException e) {
-                System.out.println(e);
-                throw new ConfigMapHandleException("Parse json file error: "+ e.toString());
-            } return configMap;
-        }else{
-            throw new ConfigMapHandleException("Can't find configMap cache file!");
+        InputStream inputStream = null;
+
+        try {
+            inputStream = new FileInputStream("./config/"+CONFIG_MAP_JSON);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+
+        if(inputStream == null){
+            System.out.println("Inner config used!");
+            inputStream = ConfigMap.class.getClassLoader().getResourceAsStream(CONFIG_MAP_JSON);
+        }
+        ConfigMap configMap = null;
+        try {
+            configMap = objMapper.readValue(inputStream, ConfigMap.class);
+            inputStream.close();
+        } catch (IOException e) {
+            System.out.println(e);
+            throw new ConfigMapHandleException("Parse json file error: "+ e.toString());
+        } return configMap;
     }
 
 }

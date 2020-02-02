@@ -18,10 +18,10 @@ public class DictTest {
 
     @Autowired
     Dict dict;
-
-    @Test
-    public void getTopicTest(){
-        System.out.println(dict.getTopic());
-    }
+//
+//    @Test
+//    public void getTopicTest(){
+//        System.out.println(dict.getTopic());
+//    }
 
 }

@@ -1,7 +1,7 @@
 package com.heiyu.platform.device.entity.product;
 
 /**
- * ²ϊΖ·TopicΚµΜεΐΰ
+ * δΊ§ε“Topicε®δ½“η±»
  * //TODO
  * @author WangYi
  * @date 15:07 2019/8/6
