@@ -45,6 +45,7 @@ public class ReadDataFromMqtt implements IMqttMessageListener {
             String data =new String(message.getPayload());
             SensorDataDTO sensorDataDTO = getSensorDataDTOFromJson(data);
             System.out.println(sensorDataDTO);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

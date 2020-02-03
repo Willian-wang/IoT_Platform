@@ -1,7 +1,7 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.heiyu.platform.device.DeviceControllerBoot;
-import com.heiyu.platform.device.dao.ProductInfMapper;
+import com.heiyu.platform.device.dao.mysql.ProductInfMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 /**
- * MybatisÄ£¿é²âÊÔÀà
+ * MybatisÄ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * @author WangYi
  * @date 16:19 2019/8/8
  * @version 1.0

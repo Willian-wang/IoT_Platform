@@ -1,6 +1,6 @@
 package com.heiyu.platform.device.service;
 
-import com.heiyu.platform.device.dao.ProductInfMapper;
+import com.heiyu.platform.device.dao.mysql.ProductInfMapper;
 import com.heiyu.platform.device.entity.product.ProductDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

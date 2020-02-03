@@ -1,4 +1,4 @@
-package com.heiyu.platform.device.dao;
+package com.heiyu.platform.device.dao.mysql;
 
 import com.heiyu.platform.device.entity.product.ProductDetail;
 import org.apache.ibatis.annotations.*;

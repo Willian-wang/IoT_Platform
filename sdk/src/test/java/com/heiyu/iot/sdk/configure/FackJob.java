@@ -3,7 +3,7 @@ package com.heiyu.iot.sdk.configure;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.heiyu.iot.sdk.entity.ConfigMap;
+import com.heiyu.iot.sdk.entity.configmap.ConfigMap;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;

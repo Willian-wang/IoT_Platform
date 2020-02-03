@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.heiyu.iot.sdk.entity.Sensor.i2c.I2cDataSheet;
 import com.heiyu.iot.sdk.entity.Sensor.i2c.I2cSensorData;
+import com.heiyu.iot.sdk.entity.configmap.SensorConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

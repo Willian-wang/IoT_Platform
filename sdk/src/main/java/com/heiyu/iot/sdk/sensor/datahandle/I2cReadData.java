@@ -1,13 +1,10 @@
 package com.heiyu.iot.sdk.sensor.datahandle;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.heiyu.iot.sdk.entity.Sensor.SensorDataDTO;
 import com.heiyu.iot.sdk.entity.Sensor.i2c.I2cDataSheet;
 import com.heiyu.iot.sdk.entity.Sensor.i2c.I2cSensorData;
-import com.heiyu.iot.sdk.entity.SensorConfig;
+import com.heiyu.iot.sdk.entity.configmap.SensorConfig;
 import com.heiyu.iot.sdk.sensor.device.I2cSensor;
-import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;

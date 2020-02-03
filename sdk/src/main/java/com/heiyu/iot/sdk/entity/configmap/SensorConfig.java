@@ -1,4 +1,4 @@
-package com.heiyu.iot.sdk.entity;
+package com.heiyu.iot.sdk.entity.configmap;
 
 import com.heiyu.iot.sdk.entity.Sensor.AbstractSensorData;
 

@@ -1,16 +1,13 @@
 package com.heiyu.iot.sdk.configure;
 
-import com.heiyu.iot.sdk.entity.ConfigMap;
+import com.heiyu.iot.sdk.entity.configmap.ConfigMap;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.net.URISyntaxException;
 
 import static java.lang.Thread.sleep;
 import static org.quartz.JobBuilder.newJob;

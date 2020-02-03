@@ -22,6 +22,8 @@ public class SensorDataDTO extends MessageHeader {
     private long sensorId;
     /**连接传感器设备的父节点ID*/
     private Long fatherDeviceId;
+    /**数据时间戳*/
+    private Long dataTimestamp;
 
     private DataDTO[] dataDTO;
 
@@ -64,6 +66,15 @@ public class SensorDataDTO extends MessageHeader {
 
     public DataDTO DataDTOInstance(){
         return new DataDTO();
+    }
+
+    public Long getDataTimestamp() {
+        return dataTimestamp;
+    }
+
+    public SensorDataDTO setDataTimestamp(Long dataTimestamp) {
+        this.dataTimestamp = dataTimestamp;
+        return this;
     }
 
     public static class DataDTO{

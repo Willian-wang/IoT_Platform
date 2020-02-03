@@ -1,10 +1,10 @@
 package com.heiyu.iot.sdk.sensor.datahandle;
 
 import com.heiyu.iot.sdk.entity.Sensor.AbstractSensorDataSheet;
-import com.heiyu.iot.sdk.entity.SensorConfig;
+import com.heiyu.iot.sdk.entity.configmap.SensorConfig;
 import org.springframework.stereotype.Component;
 
-import static com.heiyu.iot.sdk.entity.ConfigMap.getConfigMap;
+import static com.heiyu.iot.sdk.entity.configmap.ConfigMap.getConfigMap;
 
 /**
  * //TODO

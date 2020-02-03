@@ -1,5 +1,10 @@
 package com.heiyu.iot.sdk.entity;
 
+import com.heiyu.iot.sdk.entity.configmap.DeviceInf;
+
+import static com.heiyu.iot.sdk.common.IdGenerator.getId;
+import static com.heiyu.iot.sdk.entity.configmap.ConfigMap.getConfigMap;
+
 /**
  * All message send to server is need to add this header.
  * @author : WangYi
@@ -8,9 +13,9 @@ package com.heiyu.iot.sdk.entity;
  **/
 
 public class MessageHeader {
-
+    private String messageId;
     //Device ID
-    private String deviceId;
+    private Long deviceId;
     //Type of device
     private String deviceType;
     //CurrentTimeStamp
@@ -18,4 +23,54 @@ public class MessageHeader {
     //User
     private String userId;
 
+
+    public MessageHeader() {
+       DeviceInf deviceInf = getConfigMap().getDeviceInf();
+        deviceId =  deviceInf.getDeviceId();
+        deviceType = deviceInf.getDeviceType();
+        userId =    deviceInf.getUserId();
+        timeStamp = System.currentTimeMillis();
+        messageId = String.valueOf(timeStamp)+deviceId;
+    }
+
+
+    public Long getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(Long deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public String getDeviceType() {
+        return deviceType;
+    }
+
+    public void setDeviceType(String deviceType) {
+        this.deviceType = deviceType;
+    }
+
+    public Long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(Long timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getMessageId() {
+        return messageId;
+    }
+
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
+    }
 }

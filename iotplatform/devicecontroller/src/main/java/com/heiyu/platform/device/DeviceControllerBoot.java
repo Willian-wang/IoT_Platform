@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.PropertySource;
 
+import static java.lang.Thread.sleep;
+
 /**
  * @author WangYi
  * @date 9:33 2019/8/1
@@ -19,10 +21,13 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:spring.properties")
 public class DeviceControllerBoot {
 
-    public static void main(String[] arg) {
+    public static void main(String[] arg) throws InterruptedException {
         new SpringApplicationBuilder(DeviceControllerBoot.class)
                 .web(WebApplicationType.NONE) // .REACTIVE, .SERVLET
                 .run(arg);
+
 //        registerThread.registThread();
         }
+
+
 }

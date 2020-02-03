@@ -1,5 +1,6 @@
 package com.heiyu.iot.sdk;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,11 +17,18 @@ import javax.swing.*;
  **/
 
 @SpringBootApplication
-public class SDKBoot {
-    public static void  main(String[] str){
+public class SDKBoot  implements CommandLineRunner {
+    public static void  main(String[] str) {
 //        SpringApplication.run(SDKBoot.class,str);
         new SpringApplicationBuilder(SDKBoot.class)
                 .web(WebApplicationType.NONE)
                 .run(str);
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        while(true){
+            Thread.sleep(Long.MAX_VALUE);
+        }
     }
 }

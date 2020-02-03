@@ -1,14 +1,8 @@
 package com.heiyu.iot.sdk.entity.Sensor;
 
-import com.heiyu.iot.sdk.entity.ConfigMap;
+import com.heiyu.iot.sdk.entity.configmap.ConfigMap;
 import com.heiyu.iot.sdk.entity.MessageHeader;
-import com.heiyu.iot.sdk.entity.SensorConfig;
-import com.heiyu.iot.sdk.sensor.device.Sensor;
-import com.sun.corba.se.spi.servicecontext.SendingContextServiceContext;
-
-import javax.xml.crypto.Data;
-import java.sql.DatabaseMetaData;
-import java.util.ArrayList;
+import com.heiyu.iot.sdk.entity.configmap.SensorConfig;
 
 /**
  * @author : WangYi
@@ -25,6 +19,8 @@ public class SensorDataDTO extends MessageHeader {
     private long sensorId;
     /**连接传感器设备的父节点ID*/
     private Long fatherDeviceId;
+    /**数据时间戳*/
+    private Long dataTimestamp;
 
     private DataDTO[] dataDTO;
 
@@ -66,7 +62,7 @@ public class SensorDataDTO extends MessageHeader {
                 this.sensorName = sensorConfig.getSensorName();
                 this.sensorId = sensorConfig.getSensorId();
                 this.fatherDeviceId = sensorConfig.getFatherDeviceId();
-//                this.dataDTO = new A
+                dataTimestamp = System.currentTimeMillis();
             }
         }
 
@@ -74,6 +70,15 @@ public class SensorDataDTO extends MessageHeader {
 
     public DataDTO DataDTOInstance(){
         return new DataDTO();
+    }
+
+    public Long getDataTimestamp() {
+        return dataTimestamp;
+    }
+
+    public SensorDataDTO setDataTimestamp(Long dataTimestamp) {
+        this.dataTimestamp = dataTimestamp;
+        return this;
     }
 
     public class DataDTO{

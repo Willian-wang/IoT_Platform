@@ -1,7 +1,7 @@
 package com.heiyu.iot.sdk.sensor;
 
 import com.heiyu.iot.sdk.configure.Dict;
-import com.heiyu.iot.sdk.entity.SensorConfig;
+import com.heiyu.iot.sdk.entity.configmap.SensorConfig;
 import com.heiyu.iot.sdk.mqtt.ClientMQTT;
 import com.heiyu.iot.sdk.sensor.datahandle.I2cReadData;
 import com.heiyu.iot.sdk.sensor.datahandle.SendSensorData;

@@ -9,13 +9,16 @@ package com.heiyu.platform.device.entity;
 
 public class MessageHeader {
 
+    private Long messageId;
     //Device ID
-    private String deviceId;
+    private Long deviceId;
     //Type of device
     private String deviceType;
     //CurrentTimeStamp
     private Long timeStamp;
     //User
     private String userId;
+
+
 
 }

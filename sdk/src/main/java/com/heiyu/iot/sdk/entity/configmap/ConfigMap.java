@@ -1,15 +1,11 @@
-package com.heiyu.iot.sdk.entity;
+package com.heiyu.iot.sdk.entity.configmap;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.heiyu.iot.sdk.configure.ConfigMapHandleException;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.stereotype.Component;
+import com.heiyu.iot.sdk.entity.DeviceStatusDTO;
 
 import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.stream.Collectors;
 
 /**
  * @author : William—Wang
@@ -27,8 +23,6 @@ public class ConfigMap {
 
     private DeviceInf deviceInf;
 
-    private DeviceStatus deviceStatus;
-
     private SensorConfig[] sensorConfig;
 
     private MonitorConfig monitorConfig;
@@ -39,14 +33,6 @@ public class ConfigMap {
 
     public void setDeviceInf(DeviceInf deviceInf) {
         this.deviceInf = deviceInf;
-    }
-
-    public DeviceStatus getDeviceStatus() {
-        return deviceStatus;
-    }
-
-    public void setDeviceStatus(DeviceStatus deviceStatus) {
-        this.deviceStatus = deviceStatus;
     }
 
     private ConfigMap(){}
