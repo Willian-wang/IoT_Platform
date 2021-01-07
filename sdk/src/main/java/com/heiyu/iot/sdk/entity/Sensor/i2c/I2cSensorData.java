@@ -1,6 +1,8 @@
 package com.heiyu.iot.sdk.entity.Sensor.i2c;
 
 import com.heiyu.iot.sdk.entity.Sensor.AbstractSensorData;
+import com.heiyu.iot.sdk.entity.Sensor.AbstractSensorDataSheet;
+import org.springframework.context.support.AbstractApplicationContext;
 
 /**
  * //TODO
@@ -16,8 +18,7 @@ public class I2cSensorData extends AbstractSensorData {
     private int i2cBusNum;
     /**i2c地址*/
     private int i2cAddress;
-    /**读取消息频率*/
-    private long readFrequency;
+
 
     public I2cDataSheet[] getI2cDataSheet() {
         return i2cDataSheet;
@@ -43,12 +44,9 @@ public class I2cSensorData extends AbstractSensorData {
         this.i2cAddress = i2cAddress;
     }
 
-    public long getReadFrequency() {
-        return readFrequency;
-    }
-
-    public void setReadFrequency(long readFrequency) {
-        this.readFrequency = readFrequency;
+    @Override
+    public AbstractSensorDataSheet[] getDataSheets() {
+        return  i2cDataSheet;
     }
 }
 

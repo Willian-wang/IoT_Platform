@@ -1,15 +1,11 @@
-package com.heiyu.iot.sdk.entity;
+package com.heiyu.iot.sdk.entity.configmap;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.heiyu.iot.sdk.configure.ConfigMapHandleException;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.stereotype.Component;
+import com.heiyu.iot.sdk.entity.DeviceStatusDTO;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.io.*;
 
 /**
  * @author : William—Wang
@@ -27,8 +23,6 @@ public class ConfigMap {
 
     private DeviceInf deviceInf;
 
-    private DeviceStatus deviceStatus;
-
     private SensorConfig[] sensorConfig;
 
     private MonitorConfig monitorConfig;
@@ -39,14 +33,6 @@ public class ConfigMap {
 
     public void setDeviceInf(DeviceInf deviceInf) {
         this.deviceInf = deviceInf;
-    }
-
-    public DeviceStatus getDeviceStatus() {
-        return deviceStatus;
-    }
-
-    public void setDeviceStatus(DeviceStatus deviceStatus) {
-        this.deviceStatus = deviceStatus;
     }
 
     private ConfigMap(){}
@@ -68,33 +54,43 @@ public class ConfigMap {
     }
 
 
-    public static ConfigMap getConfigMap() throws URISyntaxException, ConfigMapHandleException {
+    public static ConfigMap getConfigMap()  {
         if(configMap == null){
             synchronized (ConfigMap.class){
                 if(configMap == null){
-                    configMap =  readConfigMapCache();
+                    try {
+                        configMap = readConfigMapCache();
+                    } catch (ConfigMapHandleException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }return configMap;
     }
 
-    private static ConfigMap readConfigMapCache() throws ConfigMapHandleException, URISyntaxException {
+    private static ConfigMap readConfigMapCache() throws ConfigMapHandleException {
         ObjectMapper objMapper = new ObjectMapper();
         objMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS,false);
-        URI uri= ConfigMap.class.getClassLoader().getResource(CONFIG_MAP_JSON).toURI();
-        System.out.println(uri.getPath());
-        File file = new File(uri.getPath());
-        if(file.exists()){
-            ConfigMap configMap = null;
-            try {
-                configMap = objMapper.readValue(file, ConfigMap.class);
-            } catch (IOException e) {
-                System.out.println(e);
-                throw new ConfigMapHandleException("Parse json file error: "+ e.toString());
-            } return configMap;
-        }else{
-            throw new ConfigMapHandleException("Can't find configMap cache file!");
+        InputStream inputStream = null;
+
+        try {
+            inputStream = new FileInputStream("./config/"+CONFIG_MAP_JSON);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+
+        if(inputStream == null){
+            System.out.println("Inner config used!");
+            inputStream = ConfigMap.class.getClassLoader().getResourceAsStream(CONFIG_MAP_JSON);
+        }
+        ConfigMap configMap = null;
+        try {
+            configMap = objMapper.readValue(inputStream, ConfigMap.class);
+            inputStream.close();
+        } catch (IOException e) {
+            System.out.println(e);
+            throw new ConfigMapHandleException("Parse json file error: "+ e.toString());
+        } return configMap;
     }
 
 }

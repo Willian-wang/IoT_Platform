@@ -2,7 +2,7 @@ package com.heiyu.iot.sdk.mqtt;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.heiyu.iot.sdk.entity.DeviceStatus;
+import com.heiyu.iot.sdk.entity.DeviceStatusDTO;
 import com.heiyu.iot.sdk.entity.DeviceStatusFactory;
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
@@ -68,9 +68,9 @@ public class ClientMQTT {
             // 设置会话心跳时间 单位为秒 服务器会每隔1.5*20秒的时间向客户端发送个消息判断客户端是否在线，但这个方法并没有重连的机制
             options.setKeepAliveInterval(20);
             // 设置回调
-            DeviceStatus deviceStatus = deviceStatusFactory.getDeviceStatus(0);
+            DeviceStatusDTO deviceStatusDTO = deviceStatusFactory.getDeviceStatus(0);
             //调用工厂类，生成deviceStatus对象
-            String will = new ObjectMapper().writeValueAsString(deviceStatus);
+            String will = new ObjectMapper().writeValueAsString(deviceStatusDTO);
            //setWill方法，如果项目中需要知道客户端是否掉线可以调用该方法。设置最终端口的通知消息
             options.setWill(DEFAULT_TOPIC, will.getBytes(), 2, true);
             client = new MqttClient(HOST, CLIENT_ID, new MemoryPersistence());

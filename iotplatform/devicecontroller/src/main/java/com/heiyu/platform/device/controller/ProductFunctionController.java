@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * ¹¦ÄÜ¿ØÖÆÀà£¬¶ÔÓÚÉè±¸¹¦ÄÜµÄ¶¨Òå£¬²éÑ¯£¬É¾³ı£¬ĞŞ¸Ä¡£
+ * åŠŸèƒ½æ§åˆ¶ç±»ï¼Œå¯¹äºè®¾å¤‡åŠŸèƒ½çš„å®šä¹‰ï¼ŒæŸ¥è¯¢ï¼Œåˆ é™¤ï¼Œä¿®æ”¹ã€‚
  * @author WangYi
  * @date 14:59 2019/8/7
  * @version 1.0
- * //TODO ¸ÃÀàÎ´Íê³É
+ * //TODO è¯¥ç±»æœªå®Œæˆ
  **/
 @RequestMapping("/product/function")
 @RestController

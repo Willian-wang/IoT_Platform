@@ -1,8 +1,11 @@
-package com.heiyu.iot.sdk.entity.Sensor;
+package com.heiyu.platform.device.entity.sensor;
 
-import com.heiyu.iot.sdk.entity.configmap.ConfigMap;
-import com.heiyu.iot.sdk.entity.MessageHeader;
-import com.heiyu.iot.sdk.entity.configmap.SensorConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.heiyu.platform.device.entity.MessageHeader;
+
+import javax.sql.DataSource;
+import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * @author : WangYi
@@ -23,6 +26,11 @@ public class SensorDataDTO extends MessageHeader {
     private Long dataTimestamp;
 
     private DataDTO[] dataDTO;
+
+    public static SensorDataDTO getSensorDataDTOFromJson(String str) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(str,SensorDataDTO.class);
+    }
 
     public DataDTO[] getDataDTO() {
         return dataDTO;
@@ -56,18 +64,6 @@ public class SensorDataDTO extends MessageHeader {
         this.fatherDeviceId = fatherDeviceId;
     }
 
-    public SensorDataDTO(Long sensorId){
-        for(SensorConfig sensorConfig :ConfigMap.getConfigMap().getSensorConfig()){
-            if(sensorConfig.getSensorId() == sensorId){
-                this.sensorName = sensorConfig.getSensorName();
-                this.sensorId = sensorConfig.getSensorId();
-                this.fatherDeviceId = sensorConfig.getFatherDeviceId();
-                dataTimestamp = System.currentTimeMillis();
-            }
-        }
-
-    }
-
     public DataDTO DataDTOInstance(){
         return new DataDTO();
     }
@@ -81,10 +77,12 @@ public class SensorDataDTO extends MessageHeader {
         return this;
     }
 
-    public class DataDTO{
-        private  String  dataName;
-        private  Long dataId;
+    public static class DataDTO{
+        private String dataName;
+        private Long dataId;
         private String dataType;
+
+        public DataDTO(){}
 
         public Object getData() {
             return data;
@@ -116,7 +114,6 @@ public class SensorDataDTO extends MessageHeader {
             this.dataId = dataId;
             return this;
         }
-
         public String getDataType() {
             return dataType;
         }
@@ -125,7 +122,6 @@ public class SensorDataDTO extends MessageHeader {
             this.dataType = dataType;
             return this;
         }
-
     }
 }
 

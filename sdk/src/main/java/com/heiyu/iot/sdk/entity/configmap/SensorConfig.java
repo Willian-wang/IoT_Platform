@@ -1,4 +1,4 @@
-package com.heiyu.iot.sdk.entity;
+package com.heiyu.iot.sdk.entity.configmap;
 
 import com.heiyu.iot.sdk.entity.Sensor.AbstractSensorData;
 
@@ -19,6 +19,8 @@ public class SensorConfig {
     private String sensorType;
     /**传感器数据定义*/
     private AbstractSensorData sensorData;
+    /**读取消息频率*/
+    private long readFrequency;
 
     public String getSensorName() {
         return sensorName;
@@ -50,5 +52,13 @@ public class SensorConfig {
 
     public void setSensorData(AbstractSensorData sensorData) {
         this.sensorData = sensorData;
+    }
+
+    public long getReadFrequency() {
+        return readFrequency;
+    }
+
+    public void setReadFrequency(long readFrequency) {
+        this.readFrequency = readFrequency;
     }
 }

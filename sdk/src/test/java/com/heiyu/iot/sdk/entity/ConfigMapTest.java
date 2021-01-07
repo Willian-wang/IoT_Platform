@@ -3,14 +3,12 @@ package com.heiyu.iot.sdk.entity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.heiyu.iot.sdk.configure.ConfigMapHandle;
 import com.heiyu.iot.sdk.configure.ConfigMapHandleException;
+import com.heiyu.iot.sdk.entity.configmap.ConfigMap;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import sun.security.krb5.Config;
 
 import java.net.URISyntaxException;
 

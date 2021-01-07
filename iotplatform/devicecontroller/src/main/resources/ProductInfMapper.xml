@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.heiyu.platform.device.dao.ProductInfMapper">
+<mapper namespace="com.heiyu.platform.device.dao.mysql.ProductInfMapper">
     <resultMap type="com.heiyu.platform.device.entity.product.ProductDetail" id="ProductDetailMap">
         <id property="id" column="product_id"/>
         <result property="productName" column="product_inf_name"/>

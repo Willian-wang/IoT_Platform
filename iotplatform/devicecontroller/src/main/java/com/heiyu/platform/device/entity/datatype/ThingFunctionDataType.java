@@ -2,7 +2,7 @@ package com.heiyu.platform.device.entity.datatype;
 
 
 /**
- * Êı¾İÀàĞÍ¿Õ½Ó¿Ú£¬ÊµÏÖ¸ÃÀàĞÍµÄÀà¿ÉÒÔ×¢Èëµ½ÎïÄ£ĞÍµÄÊı¾İÓòÖĞ¡£
+ * æ•°æ®ç±»å‹ç©ºæ¥å£ï¼Œå®ç°è¯¥ç±»å‹çš„ç±»å¯ä»¥æ³¨å…¥åˆ°ç‰©æ¨¡å‹çš„æ•°æ®åŸŸä¸­ã€‚
  * @author WangYi
  */
 public interface ThingFunctionDataType {

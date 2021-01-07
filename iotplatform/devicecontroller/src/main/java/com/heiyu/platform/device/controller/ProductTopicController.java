@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * ²úÆ·Topic£¨MQTT´«ÊäĞÅÏ¢µÄ±êÊ¶·û£©¿ØÖÆÀà
+ * äº§å“Topicï¼ˆMQTTä¼ è¾“ä¿¡æ¯çš„æ ‡è¯†ç¬¦ï¼‰æ§åˆ¶ç±»
  * @author WangYi
  * @date 15:35 2019/8/7
  * @version 1.0
- * //TODO ¸ÃÀàÎ´Íê³É
+ * //TODO è¯¥ç±»æœªå®Œæˆ
  **/
 @RequestMapping("/product/topic")
 @RestController

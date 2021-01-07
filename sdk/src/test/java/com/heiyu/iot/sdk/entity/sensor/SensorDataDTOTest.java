@@ -18,8 +18,8 @@ public class SensorDataDTOTest {
 
     @Test
     public void toStringTest(){
-        SensorDataDTO sensorDataDTO = new SensorDataDTO();
-        System.out.println(sensorDataDTO);
+//        SensorDataDTO sensorDataDTO = new SensorDataDTO();
+//        System.out.println(sensorDataDTO);
     }
 
 }

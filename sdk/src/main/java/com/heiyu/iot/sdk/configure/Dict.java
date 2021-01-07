@@ -33,10 +33,24 @@ public class Dict {
     private String DataSendTopic ;
 
     private String dataReceiveTopic;
+    @Value("${mqtt.topic.sensor.send}")
+    public String sendSensorDataTopic;
+
+    public String getTopicSendSensorData() {
+        return sendSensorDataTopic;
+    }
+
+
+
+    @Value("${mqtt.topic.register}")
+    private String registerTopic;
 
     public Dict(@Value("${device.id}") String deviceId){
         dataReceiveTopic="data/"+deviceId+"/receive";
         DataSendTopic = "data/"+deviceId+"/send";
+    }
+    public String getRegisterTopic(){
+        return registerTopic;
     }
 
     public String getDataSendTopic() {

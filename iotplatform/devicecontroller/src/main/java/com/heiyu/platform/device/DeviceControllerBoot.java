@@ -1,13 +1,16 @@
 package com.heiyu.platform.device;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.PropertySource;
 
+import static java.lang.Thread.sleep;
+
 /**
- * 设备控制服务：
- *    负责IOT平台的产品信息管理，设备信息管理，设备物模型的建立等功能。
  * @author WangYi
  * @date 9:33 2019/8/1
  * @version 1.0
@@ -18,8 +21,13 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:spring.properties")
 public class DeviceControllerBoot {
 
-    public static void main(String[] arg) {
-        SpringApplication.run(DeviceControllerBoot.class, arg);
+    public static void main(String[] arg) throws InterruptedException {
+        new SpringApplicationBuilder(DeviceControllerBoot.class)
+                .web(WebApplicationType.NONE) // .REACTIVE, .SERVLET
+                .run(arg);
+
 //        registerThread.registThread();
         }
+
+
 }
