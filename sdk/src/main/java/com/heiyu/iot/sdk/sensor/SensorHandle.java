@@ -1,10 +1,12 @@
 package com.heiyu.iot.sdk.sensor;
 
+import com.heiyu.iot.sdk.config.mqtt.ClientMQTT;
 import com.heiyu.iot.sdk.configure.Dict;
 import com.heiyu.iot.sdk.entity.configmap.SensorConfig;
-import com.heiyu.iot.sdk.mqtt.ClientMQTT;
 import com.heiyu.iot.sdk.sensor.datahandle.I2cReadData;
 import com.heiyu.iot.sdk.sensor.datahandle.SendSensorData;
+import com.heiyu.iot.sdk.sensor.device.BME280;
+import com.heiyu.iot.sdk.sensor.device.MAX44009;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 
-import static com.heiyu.iot.sdk.configure.DataDictionary.SENSOR_I2C;
+import static com.heiyu.iot.sdk.configure.DataDictionary.*;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 
 /**
@@ -32,6 +34,9 @@ public class SensorHandle {
     private HashMap<String,Class> handleClassMap = new HashMap<String,Class>();
     {
         handleClassMap.put(SENSOR_I2C, I2cReadData.class);
+        handleClassMap.put(SENSOR_BME280, BME280.class);
+        handleClassMap.put(SENSOR_MAX44009, MAX44009.class);
+        handleClassMap.put(SENSOR_SGP30,MAX44009.class);
     }
 
     @Qualifier("schedulerFactoryBean")

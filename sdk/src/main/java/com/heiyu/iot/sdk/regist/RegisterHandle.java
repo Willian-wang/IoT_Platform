@@ -2,9 +2,9 @@ package com.heiyu.iot.sdk.regist;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.heiyu.iot.sdk.config.mqtt.ClientMQTT;
 import com.heiyu.iot.sdk.configure.Dict;
 import com.heiyu.iot.sdk.entity.DeviceStatusFactory;
-import com.heiyu.iot.sdk.mqtt.ClientMQTT;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;

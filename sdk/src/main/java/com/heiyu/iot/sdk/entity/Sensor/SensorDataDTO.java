@@ -4,6 +4,8 @@ import com.heiyu.iot.sdk.entity.configmap.ConfigMap;
 import com.heiyu.iot.sdk.entity.MessageHeader;
 import com.heiyu.iot.sdk.entity.configmap.SensorConfig;
 
+import java.util.HashMap;
+
 /**
  * @author : WangYi
  * @version : 1.0
@@ -22,15 +24,16 @@ public class SensorDataDTO extends MessageHeader {
     /**数据时间戳*/
     private Long dataTimestamp;
 
-    private DataDTO[] dataDTO;
-
-    public DataDTO[] getDataDTO() {
-        return dataDTO;
+    public HashMap<String, Object> getData() {
+        return data;
     }
 
-    public void setDataDTO(DataDTO[] dataDTO) {
-        this.dataDTO = dataDTO;
+    public SensorDataDTO setData(HashMap<String, Object> data) {
+        this.data = data;
+        return null;
     }
+
+    private HashMap<String,Object> data;
 
     public String getSensorName() {
         return sensorName;
@@ -68,10 +71,6 @@ public class SensorDataDTO extends MessageHeader {
 
     }
 
-    public DataDTO DataDTOInstance(){
-        return new DataDTO();
-    }
-
     public Long getDataTimestamp() {
         return dataTimestamp;
     }
@@ -81,51 +80,5 @@ public class SensorDataDTO extends MessageHeader {
         return this;
     }
 
-    public class DataDTO{
-        private  String  dataName;
-        private  Long dataId;
-        private String dataType;
-
-        public Object getData() {
-            return data;
-        }
-
-        public DataDTO setData(Object data) {
-            this.data = data;
-            return this;
-        }
-
-        private Object data;
-
-
-
-        public String getDataName() {
-            return dataName;
-        }
-
-        public DataDTO setDataName(String dataName) {
-            this.dataName = dataName;
-            return this;
-        }
-
-        public Long getDataId() {
-            return dataId;
-        }
-
-        public DataDTO setDataId(Long dataId) {
-            this.dataId = dataId;
-            return this;
-        }
-
-        public String getDataType() {
-            return dataType;
-        }
-
-        public DataDTO setDataType(String dataType) {
-            this.dataType = dataType;
-            return this;
-        }
-
-    }
 }
 

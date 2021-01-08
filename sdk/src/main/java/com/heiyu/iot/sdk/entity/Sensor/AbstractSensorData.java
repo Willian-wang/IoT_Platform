@@ -14,7 +14,7 @@ import static com.heiyu.iot.sdk.configure.DataDictionary.SENSOR_I2C;
  * @version : 1.0
  * @date : 17:20 2020/1/25
  **/
-@JsonTypeInfo(use=JsonTypeInfo.Id.NAME,visible = true, include=JsonTypeInfo.As.PROPERTY, property="sensorInterfaceType")
+@JsonTypeInfo(use=JsonTypeInfo.Id.NAME,visible = true, defaultImpl = CustomizeDriverData.class,include=JsonTypeInfo.As.PROPERTY, property="sensorInterfaceType")
 @JsonSubTypes({
         @JsonSubTypes.Type(name=SENSOR_I2C ,value= I2cSensorData.class),
 //        @JsonSubTypes.Type(name="cat",value= Sensor.class),
@@ -33,10 +33,6 @@ public abstract class AbstractSensorData {
         this.sensorInterfaceType = sensorInterfaceType;
     }
 
-    /**
-     * 获取传感器数据定义表的方法接口
-     * @return 传感器数据定义表
-     */
-    public abstract AbstractSensorDataSheet[] getDataSheets();
+
 
 }

@@ -14,9 +14,9 @@ import java.util.Map;
  *
  */
 public interface Sensor {
-
-
-    Map readData() ;
+    void sensorInitial();
+    void sensorDestroy();
+//    Map readData() throws Exception;
 //    void setData(IOTdata action);
 //    Map Actiong(IOTdata action);
 

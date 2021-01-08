@@ -1,6 +1,7 @@
 package com.heiyu.iot.sdk.sensor.datahandle;
 
 import com.heiyu.iot.sdk.entity.Sensor.AbstractSensorDataSheet;
+import com.heiyu.iot.sdk.entity.Sensor.i2c.I2cSensorData;
 import com.heiyu.iot.sdk.entity.configmap.SensorConfig;
 import org.springframework.stereotype.Component;
 
@@ -24,23 +25,25 @@ public class SensorDataTypeHandle {
 
     public static Object handleDataType(Long sensorId , Long dataId ,Long data){
         for(SensorConfig sensorConfig : getConfigMap ().getSensorConfig()){
-            if(sensorConfig.getSensorId() == sensorId){
-                for(AbstractSensorDataSheet abstractSensorDataSheet: sensorConfig.getSensorData().getDataSheets()){
-                    if(abstractSensorDataSheet.getDataId().equals(dataId)){
-                        switch (abstractSensorDataSheet.getDataType()){
-                            case DATATYPE_BOOLEAN:
-                                boolean b;
-                                b = data >= 1;
-                                return b;
-                            case DATATYPE_INT:
-                            case DATATYPE_DOUBLE:
-                                return pow10(abstractSensorDataSheet.getDataMagnitude(),data);
-                            case DATATYPE_BYTE:
-                                return data;
-                            default:
-                                return null;
+            if(sensorConfig.getSensorId() == sensorId && sensorConfig.getSensorData() instanceof I2cSensorData){
+                for(AbstractSensorDataSheet abstractSensorDataSheet: ((I2cSensorData) sensorConfig.getSensorData()).getI2cDataSheet()){
+                    if (abstractSensorDataSheet.getDataId().equals(dataId)) {
+                            switch (abstractSensorDataSheet.getDataType()) {
+                                case DATATYPE_BOOLEAN:
+                                    boolean b;
+                                    b = data >= 1;
+                                    return b;
+                                case DATATYPE_INT:
+                                case DATATYPE_DOUBLE:
+                                    return pow10(abstractSensorDataSheet.getDataMagnitude(), data);
+                                case DATATYPE_BYTE:
+                                    return data;
+                                default:
+                                    return null;
+                            }
                         }
-                    }
+
+
                 }
             }
         }return null;

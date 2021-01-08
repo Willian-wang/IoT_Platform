@@ -9,7 +9,6 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -46,6 +45,7 @@ public class I2cReadData implements Job {
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+
         sensorConfig = (SensorConfig) jobExecutionContext.getMergedJobDataMap().get("sensorConfig");
         SendSensorData sendSensorData = (SendSensorData)jobExecutionContext.getMergedJobDataMap().get("sendSensorData");
         i2cSensorData = (I2cSensorData) sensorConfig.getSensorData();
@@ -86,7 +86,7 @@ public class I2cReadData implements Job {
 
     private void i2cFormatData(){
         sensorDataDTO = new SensorDataDTO(sensorConfig.getSensorId());
-        ArrayList<SensorDataDTO.DataDTO> dataDTOArrayList = new ArrayList<SensorDataDTO.DataDTO>();
+        HashMap<String,Object> dataMap=new HashMap<String,Object>();
         for(I2cDataSheet i2cDataSheet : i2cSensorData.getI2cDataSheet()){
             long data = 0;
             switch (i2cDataSheet.getDataPositionType()){
@@ -104,15 +104,10 @@ public class I2cReadData implements Job {
                     }break;
                 default:
                     break;
-            }SensorDataDTO.DataDTO dataDTO = sensorDataDTO.DataDTOInstance();
-            dataDTO.setDataId(i2cDataSheet.getDataId())
-                    .setDataName(i2cDataSheet.getDataName())
-                    .setDataType(i2cDataSheet.getDataType())
-                    .setData(handleDataType(sensorConfig.getSensorId()
-                            ,i2cDataSheet.getDataId()
-                            ,data));
-            dataDTOArrayList.add(dataDTO);
-        }sensorDataDTO.setDataDTO(dataDTOArrayList.toArray(new SensorDataDTO.DataDTO[]{}));
+            }dataMap.put(i2cDataSheet.getDataName(),handleDataType(sensorConfig.getSensorId()
+                    ,i2cDataSheet.getDataId()
+                    ,data));
+        }sensorDataDTO.setData(dataMap);
     }
 
 }

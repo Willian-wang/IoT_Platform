@@ -17,6 +17,8 @@ import java.util.HashMap;
 
 public class I2cSensor implements Sensor {
 
+
+
     private int i2cBusNum;
     private int i2cAddress;
     private Byte[] readRegister;
@@ -31,6 +33,15 @@ public class I2cSensor implements Sensor {
         this.readRegister = readRegister;
     }
 
+    @Override
+    public void sensorInitial() {
+
+    }
+
+    @Override
+    public void sensorDestroy() {
+
+    }
 
     public int[] getI2cBus() {
         int[] ids = null;
@@ -44,7 +55,7 @@ public class I2cSensor implements Sensor {
         return ids;
     }
 
-    @Override
+//    @Override
     public HashMap<Byte, Integer> readData() {
         // get the I2C bus to communicate on
         HashMap<Byte, Integer> sensorData = new HashMap<Byte, Integer>();

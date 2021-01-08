@@ -1,7 +1,6 @@
 package com.heiyu.platform.device.dao.mongo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,8 +14,8 @@ import org.springframework.stereotype.Repository;
 public class SensorDataDao {
 
 
-    @Autowired
-    private MongoTemplate mongoTemplate;
+//    @Autowired
+//    private MongoTemplate mongoTemplate;
 
 
 
