@@ -27,6 +27,11 @@
     }
   ],
   "monitorConfig": {
-
+    "monitorEnabled": true,
+    "cpuInfoEnabled":true,
+    "memoryInfoEnabled": true,
+    "netInfoEnabled":true,
+    "diskInfoEnabled": true,
+    "monitorInterval":5000
   }
 }

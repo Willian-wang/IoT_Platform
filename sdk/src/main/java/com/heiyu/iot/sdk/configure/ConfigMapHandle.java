@@ -34,6 +34,7 @@ public class ConfigMapHandle {
     public  void readConfigMap() throws URISyntaxException, ConfigMapHandleException {
         ConfigMap configMap = getConfigMap();
         sensorHandle.readSensorConfig(configMap.getSensorConfig());
+        monitorHandle.readMonitorConfig(configMap.getMonitorConfig());
     }
 
     private void syncConfigMapCache(){

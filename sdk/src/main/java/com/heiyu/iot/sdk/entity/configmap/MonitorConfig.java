@@ -19,7 +19,7 @@ public class MonitorConfig {
     /**磁盘信息监控*/
     private boolean diskInfoEnabled;
     /**监控间隔*/
-    private Integer monitorInterval;
+    private Long monitorInterval;
 
     public boolean isMonitorEnabled() {
         return monitorEnabled;
@@ -61,11 +61,11 @@ public class MonitorConfig {
         this.diskInfoEnabled = diskInfoEnabled;
     }
 
-    public Integer getMonitorInterval() {
+    public Long getMonitorInterval() {
         return monitorInterval;
     }
 
-    public void setMonitorInterval(Integer monitorInterval) {
+    public void setMonitorInterval(Long monitorInterval) {
         this.monitorInterval = monitorInterval;
     }
 }

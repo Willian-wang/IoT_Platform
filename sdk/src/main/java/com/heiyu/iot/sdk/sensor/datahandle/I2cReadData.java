@@ -47,11 +47,11 @@ public class I2cReadData implements Job {
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
 
         sensorConfig = (SensorConfig) jobExecutionContext.getMergedJobDataMap().get("sensorConfig");
-        SendSensorData sendSensorData = (SendSensorData)jobExecutionContext.getMergedJobDataMap().get("sendSensorData");
+        SendData sendData = (SendData)jobExecutionContext.getMergedJobDataMap().get("sendSensorData");
         i2cSensorData = (I2cSensorData) sensorConfig.getSensorData();
         i2cReadData(i2cSensorData);
         i2cFormatData();
-        sendSensorData.sendData(sensorDataDTO);
+        sendData.sendData(sensorDataDTO);
     }
 
     private void i2cReadData(I2cSensorData i2cSensorData){

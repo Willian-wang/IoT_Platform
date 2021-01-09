@@ -10,16 +10,14 @@ package com.heiyu.iot.sdk.sensor.device;
 
 import com.heiyu.iot.sdk.entity.Sensor.SensorDataDTO;
 import com.heiyu.iot.sdk.entity.configmap.SensorConfig;
-import com.heiyu.iot.sdk.sensor.datahandle.SendSensorData;
+import com.heiyu.iot.sdk.sensor.datahandle.SendData;
 import com.pi4j.io.i2c.I2CBus;
 import com.pi4j.io.i2c.I2CDevice;
 import com.pi4j.io.i2c.I2CFactory;
-import com.heiyu.iot.sdk.sensor.device.Sensor;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,11 +28,11 @@ public class BME280 implements Sensor, Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         SensorConfig sensorConfig = (SensorConfig) jobExecutionContext.getMergedJobDataMap().get("sensorConfig");
-        SendSensorData sendSensorData = (SendSensorData)jobExecutionContext.getMergedJobDataMap().get("sendSensorData");
+        SendData sendData = (SendData)jobExecutionContext.getMergedJobDataMap().get("sendSensorData");
         try {
             SensorDataDTO sensorDataDTO = new  SensorDataDTO(sensorConfig.getSensorId());
             sensorDataDTO.setData((HashMap<String, Object>) readData());
-            sendSensorData.sendData(sensorDataDTO);
+            sendData.sendData(sensorDataDTO);
 
         } catch (Exception e) {
             e.printStackTrace();

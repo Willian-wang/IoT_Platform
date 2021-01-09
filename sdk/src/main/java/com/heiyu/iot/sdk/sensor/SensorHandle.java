@@ -4,7 +4,7 @@ import com.heiyu.iot.sdk.config.mqtt.ClientMQTT;
 import com.heiyu.iot.sdk.configure.Dict;
 import com.heiyu.iot.sdk.entity.configmap.SensorConfig;
 import com.heiyu.iot.sdk.sensor.datahandle.I2cReadData;
-import com.heiyu.iot.sdk.sensor.datahandle.SendSensorData;
+import com.heiyu.iot.sdk.sensor.datahandle.SendData;
 import com.heiyu.iot.sdk.sensor.device.BME280;
 import com.heiyu.iot.sdk.sensor.device.MAX44009;
 import org.eclipse.paho.client.mqttv3.MqttClient;
@@ -60,9 +60,9 @@ public class SensorHandle {
     public void readSensorConfig(SensorConfig[] sensorConfigs){
         for(SensorConfig sensorConfig:sensorConfigs){
             JobDataMap jobDataMap =  new JobDataMap();
-            SendSensorData sendSensorData = new SendSensorData();
-            sendSensorData.setClient(client).setTopic(dict.getTopicSendSensorData());
-            jobDataMap.put("sendSensorData",sendSensorData);
+            SendData sendData = new SendData();
+            sendData.setClient(client).setTopic(dict.getTopicSendSensorData());
+            jobDataMap.put("sendSensorData", sendData);
             jobDataMap.put("sensorConfig", sensorConfig);
             Trigger trigger = TriggerBuilder.newTrigger()
                     .startNow()

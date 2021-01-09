@@ -34,7 +34,18 @@ public class Dict {
 
     private String dataReceiveTopic;
     @Value("${mqtt.topic.sensor.send}")
-    public String sendSensorDataTopic;
+    private String sendSensorDataTopic;
+
+    public String getSendSensorDataTopic() {
+        return sendSensorDataTopic;
+    }
+
+    public String getMonitorDataTopic() {
+        return monitorDataTopic;
+    }
+
+    @Value("${mqtt.topic.monitor}")
+    private String monitorDataTopic;
 
     public String getTopicSendSensorData() {
         return sendSensorDataTopic;

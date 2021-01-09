@@ -14,7 +14,8 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
  * @date : 23:24 2020/1/31
  **/
 
-public class SendSensorData {
+public class SendData {
+
 
     private MqttClient client;
     private String topic;
@@ -23,7 +24,7 @@ public class SendSensorData {
         return client;
     }
 
-    public SendSensorData setClient(MqttClient client) {
+    public SendData setClient(MqttClient client) {
         this.client = client;
         return this;
     }
@@ -32,16 +33,16 @@ public class SendSensorData {
         return topic;
     }
 
-    public SendSensorData setTopic(String topic) {
+    public SendData setTopic(String topic) {
         this.topic = topic;
         return this;
     }
 
-    public  void sendData(SensorDataDTO sensorDataDTO){
+    public  void sendData(Object data){
         ObjectMapper objectMapper = new ObjectMapper();
         byte[] payload = {};
         try {
-            payload = objectMapper.writeValueAsBytes(sensorDataDTO);
+            payload = objectMapper.writeValueAsBytes(data);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
