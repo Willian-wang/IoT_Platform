@@ -21,7 +21,7 @@ public class MessageHeader {
     //CurrentTimeStamp
     private Long timeStamp;
     //User
-    private String userId;
+    private Long userId;
 
 
     public MessageHeader() {
@@ -58,11 +58,11 @@ public class MessageHeader {
         this.timeStamp = timeStamp;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

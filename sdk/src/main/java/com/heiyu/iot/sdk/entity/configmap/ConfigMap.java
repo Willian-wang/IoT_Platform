@@ -74,7 +74,10 @@ public class ConfigMap {
         InputStream inputStream = null;
 
         try {
-            inputStream = new FileInputStream("./config/"+CONFIG_MAP_JSON);
+            File configFile = new File("./config/"+CONFIG_MAP_JSON);
+            if (configFile.exists()) {
+                inputStream = new FileInputStream(configFile);
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

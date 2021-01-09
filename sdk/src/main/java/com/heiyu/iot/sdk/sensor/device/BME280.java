@@ -32,7 +32,10 @@ public class BME280 implements Sensor, Job {
         SensorConfig sensorConfig = (SensorConfig) jobExecutionContext.getMergedJobDataMap().get("sensorConfig");
         SendSensorData sendSensorData = (SendSensorData)jobExecutionContext.getMergedJobDataMap().get("sendSensorData");
         try {
-            sendSensorData.sendData(new  SensorDataDTO(sensorConfig.getSensorId()).setData((HashMap<String, Object>) readData()));
+            SensorDataDTO sensorDataDTO = new  SensorDataDTO(sensorConfig.getSensorId());
+            sensorDataDTO.setData((HashMap<String, Object>) readData());
+            sendSensorData.sendData(sensorDataDTO);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -186,7 +189,7 @@ public class BME280 implements Sensor, Job {
         p = (p - (var2 / 4096.0)) * 6250.0 / var1;
         var1 = ((double) dig_P9) * p * p / 2147483648.0;
         var2 = p * ((double) dig_P8) / 32768.0;
-        double pressure = (p + (var1 + var2 + ((double)dig_P7)) / 16.0) / 100;
+        double pressure = (p + (var1 + var2 + ((double)dig_P7)) / 16.0) ;
 
         // Humidity offset calculations
         double var_H = (((double)t_fine) - 76800.0);
@@ -204,7 +207,7 @@ public class BME280 implements Sensor, Job {
         // Output data to screen
         System.out.printf("Temperature in Celsius : %.2f C %n", cTemp);
         System.out.printf("Temperature in Fahrenheit : %.2f F %n", fTemp);
-        System.out.printf("Pressure : %.2f hPa %n", pressure);
+        System.out.printf("Pressure : %.2f Pa %n", pressure);
         System.out.printf("Relative Humidity : %.2f %% RH %n", humidity);
         HashMap<String, Object> result =new HashMap<String,Object>();
         result.put("temperature",cTemp);

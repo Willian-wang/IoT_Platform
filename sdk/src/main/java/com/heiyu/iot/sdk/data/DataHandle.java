@@ -2,10 +2,12 @@ package com.heiyu.iot.sdk.data;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.heiyu.iot.sdk.config.mqtt.ClientMQTT;
 import com.heiyu.iot.sdk.configure.Dict;
 import com.heiyu.iot.sdk.entity.DeviceStatusFactory;
-import com.heiyu.iot.sdk.mqtt.ClientMQTT;
-import org.eclipse.paho.client.mqttv3.*;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -39,12 +41,12 @@ public class DataHandle {
     public void sendData() throws JsonProcessingException, MqttException, InterruptedException {
         MqttClient server = clientMQTT.getClient();
         int n = 0;
-        while (true){
+        while (true) {
             n++;
             MqttMessage msg = new MqttMessage();
             msg.setQos(1);
             msg.setId(getId().hashCode());
-            String str = "这是第"+n+"条消息";
+            String str = "这是第" + n + "条消息";
             msg.setPayload(str.getBytes());
             server.publish(dict.getDataSendTopic(), msg);
             sleep(1000);
@@ -54,6 +56,6 @@ public class DataHandle {
     @Async("taskExecutor")
     public void receiveData() throws MqttException {
         MqttClient server = clientMQTT.getClient();
-        server.subscribe(dict.getDataReceiveTopic(),1);
+        server.subscribe(dict.getDataReceiveTopic(), 1);
     }
 }

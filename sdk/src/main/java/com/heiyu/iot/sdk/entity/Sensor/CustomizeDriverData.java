@@ -1,5 +1,7 @@
 package com.heiyu.iot.sdk.entity.Sensor;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.HashMap;
 
 /**
@@ -10,7 +12,7 @@ import java.util.HashMap;
  **/
 
 public class CustomizeDriverData extends AbstractSensorData {
-
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     HashMap<String, Object> sensorConfigs = new HashMap<>();
 
     public HashMap<String, Object> getSensorConfigs() {

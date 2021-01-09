@@ -8,13 +8,21 @@
     {
       "sensorName": "BME280",
       "sensorId": 1237128434,
-      "readFrequency": 5000,
+      "readFrequency": 2000,
+      "sensorType": "sensor",
+      "sensorData": {
+        "sensorInterfaceType": "BME280"
+      }
+    },
+    {
+      "sensorName": "MAX44009",
+      "sensorId": 1237128430,
+      "readFrequency": 4000,
       "sensorType": "sensor",
       "sensorData": {
         "sensorConfigs": {
-
         },
-        "sensorInterfaceType": "BME280"
+        "sensorInterfaceType": "MAX44009"
       }
     }
   ],

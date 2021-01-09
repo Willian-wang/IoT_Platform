@@ -14,7 +14,7 @@ public class DeviceInf {
     /**设备类型*/
     private String deviceType;
     /**用户ID*/
-    private String userId;
+    private Long userId;
 
     public Long getDeviceId() {
         return deviceId;
@@ -25,11 +25,11 @@ public class DeviceInf {
         return this;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public DeviceInf setUserId(String userId) {
+    public DeviceInf setUserId(Long userId) {
         this.userId = userId;
         return this;
     }

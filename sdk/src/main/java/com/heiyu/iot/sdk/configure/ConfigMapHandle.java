@@ -1,6 +1,7 @@
 package com.heiyu.iot.sdk.configure;
 
 import com.heiyu.iot.sdk.entity.configmap.ConfigMap;
+import com.heiyu.iot.sdk.monitor.MonitorHandle;
 import com.heiyu.iot.sdk.sensor.SensorHandle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,8 @@ public class ConfigMapHandle {
     @Autowired
     private SensorHandle sensorHandle;
 
+    @Autowired
+    private MonitorHandle monitorHandle;
 
     @PostConstruct
     public  void readConfigMap() throws URISyntaxException, ConfigMapHandleException {

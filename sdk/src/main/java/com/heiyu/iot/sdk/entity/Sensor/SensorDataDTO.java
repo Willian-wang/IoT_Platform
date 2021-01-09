@@ -12,15 +12,13 @@ import java.util.HashMap;
  * @date : 10:43 2020/1/19
  *
  **/
-
+//@Document("sensorData")
 public class SensorDataDTO extends MessageHeader {
 
     /**传感器名称*/
     private String sensorName;
     /**传感器ID*/
     private long sensorId;
-    /**连接传感器设备的父节点ID*/
-    private Long fatherDeviceId;
     /**数据时间戳*/
     private Long dataTimestamp;
 
@@ -30,7 +28,7 @@ public class SensorDataDTO extends MessageHeader {
 
     public SensorDataDTO setData(HashMap<String, Object> data) {
         this.data = data;
-        return null;
+        return this;
     }
 
     private HashMap<String,Object> data;
@@ -51,20 +49,12 @@ public class SensorDataDTO extends MessageHeader {
         this.sensorId = sensorId;
     }
 
-    public long getFatherDeviceId() {
-        return fatherDeviceId;
-    }
-
-    public void setFatherDeviceId(long fatherDeviceId) {
-        this.fatherDeviceId = fatherDeviceId;
-    }
 
     public SensorDataDTO(Long sensorId){
         for(SensorConfig sensorConfig :ConfigMap.getConfigMap().getSensorConfig()){
             if(sensorConfig.getSensorId() == sensorId){
                 this.sensorName = sensorConfig.getSensorName();
                 this.sensorId = sensorConfig.getSensorId();
-                this.fatherDeviceId = sensorConfig.getFatherDeviceId();
                 dataTimestamp = System.currentTimeMillis();
             }
         }
