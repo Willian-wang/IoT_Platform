@@ -1,4 +1,4 @@
-package com.heiyu.iot.sdk.entity;
+package com.heiyu.platform.device.entity;
 
 import java.util.HashMap;
 
@@ -16,8 +16,8 @@ public class MonitorDataDTO extends MessageHeader implements DataDTO{
     public MonitorDataDTO() {
     }
 
-    public MonitorDataDTO(HashMap<String, Object> data) {
-        this.data = data;
+    public MonitorDataDTO(HashMap<String, Object> monitorData) {
+        this.data = monitorData;
     }
 
     public void setData(HashMap<String, Object> data) {
@@ -25,8 +25,14 @@ public class MonitorDataDTO extends MessageHeader implements DataDTO{
     }
 
 
+
     @Override
     public HashMap<String, Object> getData() {
         return data;
+    }
+
+    @Override
+    public Long getTimestamp() {
+        return null;
     }
 }

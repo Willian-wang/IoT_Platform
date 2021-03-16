@@ -1,5 +1,6 @@
 package com.heiyu.iot.sdk.entity.Sensor;
 
+import com.heiyu.iot.sdk.entity.DataDTO;
 import com.heiyu.iot.sdk.entity.configmap.ConfigMap;
 import com.heiyu.iot.sdk.entity.MessageHeader;
 import com.heiyu.iot.sdk.entity.configmap.SensorConfig;
@@ -13,15 +14,15 @@ import java.util.HashMap;
  *
  **/
 //@Document("sensorData")
-public class SensorDataDTO extends MessageHeader {
+public class SensorDataDTO extends MessageHeader implements DataDTO {
 
     /**传感器名称*/
     private String sensorName;
     /**传感器ID*/
     private long sensorId;
-    /**数据时间戳*/
-    private Long dataTimestamp;
 
+
+    @Override
     public HashMap<String, Object> getData() {
         return data;
     }
@@ -55,20 +56,11 @@ public class SensorDataDTO extends MessageHeader {
             if(sensorConfig.getSensorId() == sensorId){
                 this.sensorName = sensorConfig.getSensorName();
                 this.sensorId = sensorConfig.getSensorId();
-                dataTimestamp = System.currentTimeMillis();
             }
         }
 
     }
 
-    public Long getDataTimestamp() {
-        return dataTimestamp;
-    }
-
-    public SensorDataDTO setDataTimestamp(Long dataTimestamp) {
-        this.dataTimestamp = dataTimestamp;
-        return this;
-    }
 
 }
 

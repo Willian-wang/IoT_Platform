@@ -1,6 +1,7 @@
 {
   "deviceInf": {
     "deviceId": "233",
+    "deviceLab": "chemistry_1",
     "deviceType": "raspberry pi4",
     "userId": 12312322
   },

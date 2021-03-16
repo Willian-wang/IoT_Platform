@@ -23,6 +23,16 @@ public class MessageHeader {
     //User
     private Long userId;
 
+    public String getDeviceLab() {
+        return deviceLab;
+    }
+
+    public void setDeviceLab(String deviceLab) {
+        this.deviceLab = deviceLab;
+    }
+
+    private String deviceLab;
+
 
     public MessageHeader() {
        DeviceInf deviceInf = getConfigMap().getDeviceInf();
@@ -31,6 +41,7 @@ public class MessageHeader {
         userId =    deviceInf.getUserId();
         timeStamp = System.currentTimeMillis();
         messageId = String.valueOf(timeStamp)+deviceId;
+        deviceLab = deviceInf.getDeviceLab();
     }
 
 

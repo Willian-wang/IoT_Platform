@@ -19,7 +19,7 @@ import javax.annotation.PostConstruct;
 
 public class InfluxClient {
     @Value("${influxdb.token}")
-    public String token;
+    public  String token;
     @Value("${influxdb.bucket}")
     public String bucket;
     @Value("${influxdb.org}")

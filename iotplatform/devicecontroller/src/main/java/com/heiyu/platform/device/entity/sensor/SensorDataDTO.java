@@ -1,11 +1,11 @@
 package com.heiyu.platform.device.entity.sensor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.heiyu.platform.device.entity.DataDTO;
 import com.heiyu.platform.device.entity.MessageHeader;
 
-import javax.sql.DataSource;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * @author : WangYi
@@ -14,31 +14,35 @@ import java.util.Arrays;
  *
  **/
 
-public class SensorDataDTO extends MessageHeader {
+public class SensorDataDTO extends MessageHeader implements DataDTO {
 
     /**传感器名称*/
     private String sensorName;
     /**传感器ID*/
     private long sensorId;
-    /**连接传感器设备的父节点ID*/
-    private Long fatherDeviceId;
-    /**数据时间戳*/
-    private Long dataTimestamp;
 
-    private DataDTO[] dataDTO;
+    @Override
+    public Long getTimestamp() {
+        return super.getTimeStamp();
+    }
+
+    @Override
+    public HashMap<String, Object> getData() {
+        return data;
+    }
+
+    public void setData(HashMap<String, Object> data) {
+        this.data = data;
+    }
+
+    private HashMap<String,Object> data;
 
     public static SensorDataDTO getSensorDataDTOFromJson(String str) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(str,SensorDataDTO.class);
     }
 
-    public DataDTO[] getDataDTO() {
-        return dataDTO;
-    }
 
-    public void setDataDTO(DataDTO[] dataDTO) {
-        this.dataDTO = dataDTO;
-    }
 
     public String getSensorName() {
         return sensorName;
@@ -56,72 +60,6 @@ public class SensorDataDTO extends MessageHeader {
         this.sensorId = sensorId;
     }
 
-    public long getFatherDeviceId() {
-        return fatherDeviceId;
-    }
 
-    public void setFatherDeviceId(long fatherDeviceId) {
-        this.fatherDeviceId = fatherDeviceId;
-    }
-
-    public DataDTO DataDTOInstance(){
-        return new DataDTO();
-    }
-
-    public Long getDataTimestamp() {
-        return dataTimestamp;
-    }
-
-    public SensorDataDTO setDataTimestamp(Long dataTimestamp) {
-        this.dataTimestamp = dataTimestamp;
-        return this;
-    }
-
-    public static class DataDTO{
-        private String dataName;
-        private Long dataId;
-        private String dataType;
-
-        public DataDTO(){}
-
-        public Object getData() {
-            return data;
-        }
-
-        public DataDTO setData(Object data) {
-            this.data = data;
-            return this;
-        }
-
-        private Object data;
-
-
-
-        public String getDataName() {
-            return dataName;
-        }
-
-        public DataDTO setDataName(String dataName) {
-            this.dataName = dataName;
-            return this;
-        }
-
-        public Long getDataId() {
-            return dataId;
-        }
-
-        public DataDTO setDataId(Long dataId) {
-            this.dataId = dataId;
-            return this;
-        }
-        public String getDataType() {
-            return dataType;
-        }
-
-        public DataDTO setDataType(String dataType) {
-            this.dataType = dataType;
-            return this;
-        }
-    }
 }
 

@@ -1,18 +1,21 @@
 package com.heiyu.platform.device.sensor.read;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.heiyu.platform.device.dao.mongo.SensorDataDao;
+import com.heiyu.platform.device.entity.DataDTO;
+import com.heiyu.platform.device.entity.MonitorDataDTO;
 import com.heiyu.platform.device.entity.sensor.SensorDataDTO;
 import com.heiyu.platform.device.mqtt.ClientMQTT;
-import org.eclipse.paho.client.mqttv3.*;
+import com.heiyu.platform.device.service.DataService;
+import org.eclipse.paho.client.mqttv3.IMqttMessageListener;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.util.Arrays;
-
-import static com.heiyu.platform.device.entity.sensor.SensorDataDTO.getSensorDataDTOFromJson;
 
 /**
  * //TODO
@@ -28,6 +31,15 @@ public class ReadDataFromMqtt implements IMqttMessageListener {
 
     MqttClient mqttClient;
 
+    @Autowired
+    SensorDataDao sensorDataDao;
+
+    @Autowired
+    ObjectMapper objectMapper;
+
+    @Autowired
+    DataService dataService;
+
     @PostConstruct
     public void getSubsribe(){
         mqttClient =  clientMQTT.getClient();
@@ -41,11 +53,17 @@ public class ReadDataFromMqtt implements IMqttMessageListener {
 
     @Override
     public void messageArrived(String topic, MqttMessage message)  {
+        DataDTO data;
         try{
-            String data =new String(message.getPayload());
-            SensorDataDTO sensorDataDTO = getSensorDataDTOFromJson(data);
-            System.out.println(sensorDataDTO);
-
+            if(topic.contains("monitor")){
+                data = objectMapper.readValue(message.toString(), MonitorDataDTO.class);
+            }else if(topic.contains("sensor")){
+                data = objectMapper.readValue(message.toString(),SensorDataDTO.class);
+            }else{
+                return;
+            }
+            dataService.deviceDataHandle(data);
+            System.out.println(message.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

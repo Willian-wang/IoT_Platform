@@ -36,6 +36,7 @@ public class MonitorExcuse implements Job {
                 e.printStackTrace();
             }
         });
+        System.out.println("MonitorDataTrans");
         dataSender.sendData(new MonitorDataDTO(dataMap));
     }
 }

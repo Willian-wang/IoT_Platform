@@ -16,6 +16,17 @@ public class DeviceInf {
     /**用户ID*/
     private Long userId;
 
+    public String getDeviceLab() {
+        return deviceLab;
+    }
+
+    public void setDeviceLab(String deviceLab) {
+        this.deviceLab = deviceLab;
+    }
+
+    /**实验室标签*/
+    private String deviceLab;
+
     public Long getDeviceId() {
         return deviceId;
     }
