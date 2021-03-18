@@ -10,10 +10,12 @@ package com.heiyu.iot.sdk.sensor.device;
 
 import com.heiyu.iot.sdk.entity.Sensor.SensorDataDTO;
 import com.heiyu.iot.sdk.entity.configmap.SensorConfig;
+import com.heiyu.iot.sdk.sensor.SensorHandle;
 import com.heiyu.iot.sdk.sensor.datahandle.SendData;
 import com.pi4j.io.i2c.I2CBus;
 import com.pi4j.io.i2c.I2CDevice;
 import com.pi4j.io.i2c.I2CFactory;
+import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -21,21 +23,28 @@ import org.quartz.JobExecutionException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.heiyu.iot.sdk.sensor.SensorHandle.lock;
+
+@DisallowConcurrentExecution
 public class BME280 implements Sensor, Job {
-
-
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         SensorConfig sensorConfig = (SensorConfig) jobExecutionContext.getMergedJobDataMap().get("sensorConfig");
         SendData sendData = (SendData)jobExecutionContext.getMergedJobDataMap().get("sendSensorData");
+        lock.lock();
         try {
+
+            ((SensorHandle)jobExecutionContext.getMergedJobDataMap().get("getDataReady"))
+                    .getReadDataReady(sensorConfig.getSensorData().getSensorInterfaceType());
             SensorDataDTO sensorDataDTO = new  SensorDataDTO(sensorConfig.getSensorId());
             sensorDataDTO.setData((HashMap<String, Object>) readData());
             sendData.sendData(sensorDataDTO);
 
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            lock.unlock();
         }
     }
 
@@ -55,6 +64,7 @@ public class BME280 implements Sensor, Job {
         I2CBus bus = I2CFactory.getInstance(I2CBus.BUS_1);
         // Get I2C device, BME280 I2C address is 0x76(108)
         I2CDevice device = bus.getDevice(0x76);
+
 
         // Read 24 bytes of data from address 0x88(136)
         byte[] b1 = new byte[24];

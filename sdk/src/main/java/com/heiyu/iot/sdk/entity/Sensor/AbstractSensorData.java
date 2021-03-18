@@ -4,8 +4,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.heiyu.iot.sdk.entity.Sensor.i2c.I2cSensorData;
-import com.heiyu.iot.sdk.sensor.device.Sensor;
+import com.heiyu.iot.sdk.sensor.device.TCA9548A;
 
+import static com.heiyu.iot.sdk.configure.DataDictionary.SENSOR_TCA9548A;
 import static com.heiyu.iot.sdk.configure.DataDictionary.SENSOR_I2C;
 
 /**
@@ -17,6 +18,7 @@ import static com.heiyu.iot.sdk.configure.DataDictionary.SENSOR_I2C;
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME,visible = true, defaultImpl = CustomizeDriverData.class,include=JsonTypeInfo.As.PROPERTY, property="sensorInterfaceType")
 @JsonSubTypes({
         @JsonSubTypes.Type(name=SENSOR_I2C ,value= I2cSensorData.class),
+        @JsonSubTypes.Type(name = SENSOR_TCA9548A,value = TCA9548A.class)
 //        @JsonSubTypes.Type(name="cat",value= Sensor.class),
 })
 public abstract class AbstractSensorData {

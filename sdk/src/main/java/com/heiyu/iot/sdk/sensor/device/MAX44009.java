@@ -2,10 +2,12 @@ package com.heiyu.iot.sdk.sensor.device;
 
 import com.heiyu.iot.sdk.entity.Sensor.SensorDataDTO;
 import com.heiyu.iot.sdk.entity.configmap.SensorConfig;
+import com.heiyu.iot.sdk.sensor.SensorHandle;
 import com.heiyu.iot.sdk.sensor.datahandle.SendData;
 import com.pi4j.io.i2c.I2CBus;
 import com.pi4j.io.i2c.I2CDevice;
 import com.pi4j.io.i2c.I2CFactory;
+import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -13,19 +15,29 @@ import org.quartz.JobExecutionException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.heiyu.iot.sdk.configure.DataDictionary.SENSOR_MAX44009;
+import static com.heiyu.iot.sdk.sensor.SensorHandle.detectTCA9548ASensor;
+import static com.heiyu.iot.sdk.sensor.SensorHandle.lock;
+
 /**
  * //TODO
  * @author : William—Wang
  * @version : 1.0
  * @date : 21:39 2021/01/04
  **/
-
+@DisallowConcurrentExecution
 public class MAX44009 implements Sensor, Job {
     I2CBus bus;
     I2CDevice device;
 
     public  MAX44009(){
-        sensorInitial();
+        lock.lock();
+        try {
+            detectTCA9548ASensor(SENSOR_MAX44009);
+            sensorInitial();
+        }finally {
+            lock.unlock();
+        }
     }
 
     @Override
@@ -38,6 +50,7 @@ public class MAX44009 implements Sensor, Job {
 
             // Select configuration register, 0x02(02)
             // Continuous mode, Integration time = 800 ms
+
             device.write(0x02, (byte) 0x40);
             Thread.sleep(800);
         }catch (Exception e){
@@ -54,12 +67,20 @@ public class MAX44009 implements Sensor, Job {
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         SensorConfig sensorConfig = (SensorConfig) jobExecutionContext.getMergedJobDataMap().get("sensorConfig");
         SendData sendData = (SendData)jobExecutionContext.getMergedJobDataMap().get("sendSensorData");
+        lock.lock();
         try {
+            ((SensorHandle)jobExecutionContext.getMergedJobDataMap().get("getDataReady"))
+                    .getReadDataReady(sensorConfig.getSensorData().getSensorInterfaceType());
+
             sendData.sendData(new SensorDataDTO(sensorConfig.getSensorId()).setData((HashMap<String, Object>) readData()));
+
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            lock.unlock();
         }
     }
+
 
     public Map<String, Object> readData() throws Exception {
 

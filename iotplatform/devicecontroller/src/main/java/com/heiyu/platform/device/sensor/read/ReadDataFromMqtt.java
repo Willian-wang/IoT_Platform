@@ -7,6 +7,7 @@ import com.heiyu.platform.device.entity.MonitorDataDTO;
 import com.heiyu.platform.device.entity.sensor.SensorDataDTO;
 import com.heiyu.platform.device.mqtt.ClientMQTT;
 import com.heiyu.platform.device.service.DataService;
+import com.heiyu.platform.device.service.StatusMaintainService;
 import org.eclipse.paho.client.mqttv3.IMqttMessageListener;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -40,6 +41,9 @@ public class ReadDataFromMqtt implements IMqttMessageListener {
     @Autowired
     DataService dataService;
 
+    @Autowired
+    StatusMaintainService statusMaintainService;
+
     @PostConstruct
     public void getSubsribe(){
         mqttClient =  clientMQTT.getClient();
@@ -63,6 +67,7 @@ public class ReadDataFromMqtt implements IMqttMessageListener {
                 return;
             }
             dataService.deviceDataHandle(data);
+            statusMaintainService.flushDeviceStatus(data);
             System.out.println(message.toString());
         } catch (IOException e) {
             e.printStackTrace();

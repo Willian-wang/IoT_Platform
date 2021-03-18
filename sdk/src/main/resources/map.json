@@ -18,14 +18,41 @@
     {
       "sensorName": "MAX44009",
       "sensorId": 1237128430,
-      "readFrequency": 4000,
+      "readFrequency": 3000,
       "sensorType": "sensor",
       "sensorData": {
         "sensorConfigs": {
         },
         "sensorInterfaceType": "MAX44009"
       }
+    },
+    {
+      "sensorName": "SGP30",
+      "sensorId": 1237128432,
+      "readFrequency": 4000,
+      "sensorType": "sensor",
+      "sensorData": {
+        "sensorConfigs": {
+        },
+        "sensorInterfaceType": "SGP30"
+      }
+    },
+    {
+      "sensorName": "TCA9548A",
+      "sensorId": 1237128431,
+      "readFrequency": -1,
+      "sensorType": "sensor",
+      "sensorData": {
+          "devicesPortTable": {
+            "BME280": 0,
+            "MAX44009": 0,
+            "SGP30": 1
+
+        },
+        "sensorInterfaceType": "TCA9548A"
+      }
     }
+
   ],
   "monitorConfig": {
     "monitorEnabled": true,

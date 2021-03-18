@@ -7,27 +7,47 @@ package com.heiyu.iot.sdk.sensor.device;
  * @date : 21:54 2021/01/04
  **/
 
+import com.heiyu.iot.sdk.configure.DataDictionary;
+import com.heiyu.iot.sdk.entity.Sensor.SensorDataDTO;
+import com.heiyu.iot.sdk.entity.configmap.SensorConfig;
+import com.heiyu.iot.sdk.sensor.SensorHandle;
+import com.heiyu.iot.sdk.sensor.datahandle.SendData;
 import com.pi4j.io.i2c.I2CBus;
 import com.pi4j.io.i2c.I2CDevice;
 import com.pi4j.io.i2c.I2CFactory;
+import org.quartz.DisallowConcurrentExecution;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.stream.IntStream;
+
+import static com.heiyu.iot.sdk.sensor.SensorHandle.*;
 
 /**
  * Java driver for Adafruit abc.SGP30
  * Note: Due to pi4j this only works with JDK8
  */
-public class SGP30 {
+@DisallowConcurrentExecution
+public class SGP30 implements Sensor, Job {
     private static final int[] possibleFeatureSets = new int[]{0x0020, 0x0022};
-    private int address;
-    private int wordLen;
-    private int busNo;
-    private I2CDevice device;
-    private int crc8Init;
-    private int[] serial;
-    private int crc8Polynomial;
-    private int[] featureset;
+    private static int address;
+    private static int wordLen;
+    private static int busNo;
+    private static I2CDevice device;
+    private static int crc8Init;
+    private static int[] serial;
+    private static int crc8Polynomial;
+    private static int[] featureset;
+
+    private static boolean isInit = false;
+
+
+    SensorHandle sensorHandle;
 
 
     /**
@@ -38,10 +58,13 @@ public class SGP30 {
      * @throws InterruptedException                     interrupted during delay
      * @throws I2CFactory.UnsupportedBusNumberException wrong bus no
      */
+
     public SGP30(int address, int wordLen, int busNo) throws IOException, I2CFactory.UnsupportedBusNumberException, InterruptedException {
         this.address = address; //0x58
         this.wordLen = wordLen; //2
         this.busNo = busNo; //1
+
+        detectTCA9548ASensor(DataDictionary.SENSOR_SGP30);
 
         initialiseDevice();
         loadSerial();
@@ -50,6 +73,36 @@ public class SGP30 {
             throw new RuntimeException("Unknown featureset");
         }
         iaqInit();
+    }
+
+
+
+    @Override
+    public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+        SensorConfig sensorConfig = (SensorConfig) jobExecutionContext.getMergedJobDataMap().get("sensorConfig");
+        SendData sendData = (SendData)jobExecutionContext.getMergedJobDataMap().get("sendSensorData");
+        lock.lock();
+        try {
+
+            ((SensorHandle)jobExecutionContext.getMergedJobDataMap().get("getDataReady"))
+                    .getReadDataReady(sensorConfig.getSensorData().getSensorInterfaceType());
+            SensorDataDTO sensorDataDTO = new  SensorDataDTO(sensorConfig.getSensorId());
+            sensorDataDTO.setData((HashMap<String, Object>) readData());
+
+            sendData.sendData(sensorDataDTO);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            lock.unlock();
+        }
+    }
+
+    private HashMap<String,Object> readData() throws IOException, InterruptedException {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("CO2", getECO2());
+        result.put("TVOC",getTVOC());
+        return result;
     }
 
     /**
@@ -67,14 +120,20 @@ public class SGP30 {
         this.busNo = 1;
         this.crc8Init = 0xFF;
         this.crc8Polynomial = 0x31;
+        if(!isInit) {
+            lock.lock();
+            detectTCA9548ASensor(DataDictionary.SENSOR_SGP30);
 
-        initialiseDevice();
-        loadSerial();
-        loadFeatureset();
-        if (IntStream.of(possibleFeatureSets).noneMatch(x -> x == featureset[0])) {
-            throw new RuntimeException("Unknown featureset");
+            initialiseDevice();
+            loadSerial();
+            loadFeatureset();
+            if (IntStream.of(possibleFeatureSets).noneMatch(x -> x == featureset[0])) {
+                throw new RuntimeException("Unknown featureset");
+            }
+            iaqInit();
+            lock.unlock();
+            isInit=true;
         }
-        iaqInit();
     }
 
     private void loadFeatureset() throws IOException, InterruptedException {
@@ -286,5 +345,14 @@ public class SGP30 {
         readWordsFromCommand(command, 10, 0);
     }
 
+    @Override
+    public void sensorInitial() {
+
+    }
+
+    @Override
+    public void sensorDestroy() {
+
+    }
 }
 
